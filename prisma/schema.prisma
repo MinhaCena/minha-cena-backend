@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id Int @unique @id @default(autoincrement())
+  email String
+  password String
+  unLocked DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime?
+  registrants Registrants[]
+  illustrators Illustrators[]
+
+  @@map("users")
+  @@index([id])
+}
+
+
+model Registrants {
+  id  Int @unique @default(autoincrement())
+  user_id     Int? @unique
+  users Users? @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name  String
+  email String
+  role String
+  whatapp String
+  createAt DateTime @default(now())
+  updatedAt DateTime?
+  schools Schools[]
+
+
+  @@map("registrants")
+  @@index([id])
+}
+
+model Schools {
+  id Int @unique @default(autoincrement())
+  registrant_id     Int @unique
+  registrants Registrants @relation(fields: [registrant_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name String
+  cnpj String
+  city String
+  uf String
+  type String
+  email String?  @unique
+  phone String
+  createdAt DateTime @default(now())
+  redactions Redactions[]
+
+  @@map("schools")
+  @@index([id])
+}
+
+model Redactions {
+  id Int @unique @default(autoincrement())
+  school_id     Int @unique
+  schools Schools @relation(fields: [school_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  title String
+  redaction String
+  studentName String
+  age Int
+  class String
+  theme String?
+  status String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime?
+  drawings Drawings[]
+
+  @@map("redactions")
+  @@index([id])
+}
+
+
+model Illustrators {
+  id Int @unique @default(autoincrement())
+  user_id     Int? @unique
+  users Users? @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name String
+  email String
+  cpf_cnpj String
+  whatapp String
+  portifolio String
+  createdAt DateTime @default(now())
+  drawings Drawings[]
+
+  @@map("illustrators")
+  @@index([id])
+}
+
+
+model Drawings {
+  id Int @unique @default(autoincrement())
+  redaction_id     Int @unique
+  redactions Redactions @relation(fields: [redaction_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  illustrator_id     Int @unique
+  illustrators Illustrators @relation(fields: [illustrator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  urlFile String
+  createdAt DateTime @default(now())
+  updatedAt DateTime?
+
+  @@map("drawings")
+  @@index([id])
+}
+
