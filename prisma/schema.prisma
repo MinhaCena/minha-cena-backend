@@ -127,7 +127,8 @@ model Illustrators {
   whatapp    String
   portifolio String
   createdAt  DateTime @default(now())
-  drawings   Media[]
+  updatedAt  DateTime @default(now())
+  media      Media[]
 
   @@index([id])
   @@map("illustrators")
