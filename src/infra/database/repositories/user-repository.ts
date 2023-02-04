@@ -15,4 +15,18 @@ export class UserRepository implements UserClient {
       data: raw,
     });
   }
+  async findByEmail(data: User): Promise<null | User> {
+    try {
+      await this.prismaService.users.findFirst({
+        where: {
+          email: data.email,
+        },
+      });
+      return data;
+    } catch (err) {
+      if (err) {
+        return null;
+      }
+    }
+  }
 }

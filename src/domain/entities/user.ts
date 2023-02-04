@@ -2,7 +2,8 @@ export interface User {
   id: number;
   email: string;
   password: string;
-  unLocked: Date;
+  role: number;
+  unLocked?: Date;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
 }
