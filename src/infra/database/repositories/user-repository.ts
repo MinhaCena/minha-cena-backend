@@ -17,13 +17,12 @@ export class UserRepository implements UserClient {
   }
   async findByEmail(data: User): Promise<null | User> {
     try {
-      await this.prismaService.users.findFirst({
+      return await this.prismaService.users.findFirst({
         where: {
           email: data.email,
         },
       });
-      return data;
-    } catch (err) {
+    } catch (err: Error) {
       if (err) {
         return null;
       }

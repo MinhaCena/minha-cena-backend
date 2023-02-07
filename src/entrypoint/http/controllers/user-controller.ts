@@ -1,24 +1,24 @@
-import { BadRequestException, Body, Controller, Get, HttpStatus, Post } from "@nestjs/common";
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { User } from '@application/entities/user';
-import { UserServices } from '@application/services/user-services';
+import { UserService } from '@application/services/user-service';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserServices) {}
+  constructor(private userService: UserService) {}
   @Post()
   async createUser(@Body() user: User) {
     const data = await this.userService.createUser(user);
-    if (data === 'Email invalid') {
+    if (data.error === true) {
       throw new BadRequestException({
         statusCode: HttpStatus.BAD_REQUEST,
-        message: 'Email invalid',
-      });
-    }
-
-    if (data === 'User already exists!') {
-      throw new BadRequestException({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: 'User already exists!',
+        message: data.message,
       });
     }
 

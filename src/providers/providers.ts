@@ -1,10 +1,10 @@
 import { UserRepository } from '@infra/database/repositories/user-repository';
-import { UserServices } from '@application/services/user-services';
+import { UserService } from '@application/services/user-service';
 import { UserClient } from '@application/client/user-client';
 
 export const providers = [
   {
-    provide: UserServices,
+    provide: UserService,
     useValue: UserRepository,
   },
   {
