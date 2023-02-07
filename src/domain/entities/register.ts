@@ -1,5 +1,5 @@
-import { School } from "@application/entities/school";
-import { Registrant } from "@application/entities/registrant";
+import { School } from '@application/entities/school';
+import { Registrant } from '@application/entities/registrant';
 
 export interface Register {
   id: number;

@@ -1,4 +1,4 @@
-import { School } from "@application/entities/school";
+import { School } from '@application/entities/school';
 
 export interface Author {
   id: number;

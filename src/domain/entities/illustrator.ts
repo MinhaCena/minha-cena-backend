@@ -1,4 +1,4 @@
-import { User } from "@application/entities/user";
+import { User } from '@application/entities/user';
 
 export interface Illustrator {
   id: number;
