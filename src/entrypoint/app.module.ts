@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UserController } from '@helpers/http/controllers/user-controller';
-import { UserRepository } from '@infra/database/repositories/user-repository';
+import { UserRepository } from '../infrastructure/database/repositories/user-repository';
 import { providers } from '../providers/providers';
 import { serviceProviders } from '../providers/service-providers';
+import { UserController } from '@entrypoint/http/controllers/user-controller';
 
 @Module({
   imports: [],

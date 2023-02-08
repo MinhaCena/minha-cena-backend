@@ -1,4 +1,4 @@
-import { User } from '@application/entities/user';
+import { User } from '../entity/user';
 
 export abstract class UserClient {
   abstract create(data: User): Promise<void>;

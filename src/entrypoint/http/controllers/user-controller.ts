@@ -6,8 +6,9 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { User } from '@application/entities/user';
-import { UserService } from '@application/services/user-service';
+import { User } from "@domain/entity/user";
+import { UserService } from "@domain/service/user-service";
+
 
 @Controller('user')
 export class UserController {
@@ -15,7 +16,7 @@ export class UserController {
   @Post()
   async createUser(@Body() user: User) {
     const data = await this.userService.createUser(user);
-    if (data.error === true) {
+    if (data.name === 'error') {
       throw new BadRequestException({
         statusCode: HttpStatus.BAD_REQUEST,
         message: data.message,

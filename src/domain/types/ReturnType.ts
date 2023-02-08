@@ -1,4 +1,4 @@
 export type ReturnType = {
-  error: boolean;
+  name: string;
   message: string;
 };

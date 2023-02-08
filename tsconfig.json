@@ -18,9 +18,9 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@application/*":["./src/domain/*"],
-      "@helpers/*":["./src/entrypoint/*"],
-      "@infra/*":["./src/infra/*"],
+      "@domain/*":["./src/domain/*"],
+      "@entrypoint/*":["./src/entrypoint/*"],
+      "@infrastructure/*":["./src/infrastructure/*"],
       "@test/*":["./ioc-providers/*"]
     }
   }
