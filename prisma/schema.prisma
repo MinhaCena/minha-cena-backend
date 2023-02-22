@@ -15,6 +15,7 @@ model User {
   email        String
   password     String
   role         Int
+  confirmed    Int
   unLocked     DateTime?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime?
@@ -22,62 +23,55 @@ model User {
   illustrators Illustrator[]
   institutions Institution[]
 
-  @@index([id])
   @@map("users")
 }
 
 model Teacher {
-  id                 Int                 @id @unique @default(autoincrement())
-  user_id            Int                 @unique
-  user               User                @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  name               String?
-  occupation         String?
-  createAt           DateTime            @default(now())
-  updatedAt          DateTime?
-  institutions       Institution[]       @relation("TeacherInstitution")
-  TeacherInstitution TeacherInstitution?
+  id           Int           @id @unique @default(autoincrement())
+  user_id      Int           @unique
+  user         User          @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name         String?
+  occupation   String?
+  createAt     DateTime      @default(now())
+  updatedAt    DateTime?
+  institutions Institution[] @relation("TeacherInstitution")
 
-  @@index([id])
   @@map("teachers")
 }
 
 model TeacherInstitution {
-  id             Int         @id @unique @default(autoincrement())
-  institution_id Int         @unique
-  institution    Institution @relation(fields: [institution_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  teacher_id     Int         @unique
-  teacher        Teacher     @relation(fields: [teacher_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  createAt       DateTime    @default(now())
+  id             Int       @id @unique @default(autoincrement())
+  institution_id Int       @unique
+  teacher_id     Int       @unique
+  createAt       DateTime  @default(now())
+  updatedAt      DateTime?
 
-  @@index([id])
   @@map("teachersinstitutions")
 }
 
 model Institution {
-  id                    Int                 @id @unique @default(autoincrement())
-  user_id               Int?                @unique
-  user                  User?               @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  id                    Int       @id @unique @default(autoincrement())
+  user_id               Int?      @unique
+  user                  User?     @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   institution_type      Int
   institution_name      String
   cnpj_inep             String
   city                  String
   state                 String
   school_type           Int?
-  institution_email     String?             @unique
+  institution_email     String?   @unique
   institution_phone     String?
   registrant_name       String
   registrant_email      String
   registrant_occupation String?
   registrant_whatsapp   String
   registrant_status     Int
-  createdAt             DateTime            @default(now())
+  createdAt             DateTime  @default(now())
   updatedAt             DateTime?
   essays                Essay[]
   authors               Author[]
-  teachers              Teacher[]           @relation("TeacherInstitution")
-  TeacherInstitution    TeacherInstitution?
+  teachers              Teacher[] @relation("TeacherInstitution")
 
-  @@index([id])
   @@map("institutions")
 }
 
@@ -92,7 +86,6 @@ model Author {
   updatedAt      DateTime?
   essays         Essay[]
 
-  @@index([id])
   @@map("authors")
 }
 
@@ -101,18 +94,25 @@ model Theme {
   theme     String
   createAt  DateTime  @default(now())
   updatedAt DateTime?
-  essays    Essay[]
+  essays    Essay[]   @relation("ThemeEssay")
 
-  @@index([id])
   @@map("themes")
+}
+
+model ThemeEssay {
+  id        Int       @id @unique @default(autoincrement())
+  theme_id  Int       @unique
+  essay_id  Int       @unique
+  createAt  DateTime  @default(now())
+  updatedAt DateTime?
+
+  @@map("themesessays")
 }
 
 model Essay {
   id             Int            @id @unique @default(autoincrement())
   institution_id Int            @unique
   institution    Institution    @relation(fields: [institution_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  theme_id       Int            @unique
-  themes         Theme          @relation(fields: [theme_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   author_id      Int            @unique
   authors        Author         @relation(fields: [author_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   title          String
@@ -121,8 +121,8 @@ model Essay {
   createdAt      DateTime       @default(now())
   updatedAt      DateTime?
   illustrations  Illustration[]
+  themes         Theme[]        @relation("ThemeEssay")
 
-  @@index([id])
   @@map("essays")
 }
 
@@ -136,10 +136,9 @@ model Illustrator {
   whatsapp      String
   portifolio    String
   createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @default(now())
+  updatedAt     DateTime?
   illustrations Illustration[]
 
-  @@index([id])
   @@map("illustrators")
 }
 
@@ -153,6 +152,5 @@ model Illustration {
   createdAt      DateTime    @default(now())
   updatedAt      DateTime?
 
-  @@index([id])
   @@map("illustrations")
 }
