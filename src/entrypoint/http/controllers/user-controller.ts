@@ -1,4 +1,4 @@
-import MESSAGE  from 'src/constants/messages';
+import MESSAGE  from '@domain/utils/constants/messages';
 import {
   BadRequestException,
   Body,

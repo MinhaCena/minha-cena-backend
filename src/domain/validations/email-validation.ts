@@ -1,4 +1,4 @@
-import MESSAGE from 'src/constants/messages';
+import MESSAGE from '@domain/utils/constants/messages';
 import { User } from '../entity/user';
 import { BadRequestException, HttpStatus } from '@nestjs/common';
 import validator from 'validator';

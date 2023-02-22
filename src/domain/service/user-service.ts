@@ -4,7 +4,7 @@ import { User } from '../entity/user';
 import { ReturnType } from '../types/ReturnType';
 import { EmailValidation } from '../validations/email-validation';
 import { LoginValidation } from '@domain/validations/login-validation';
-import MESSAGE from 'src/constants/messages';
+import MESSAGE from '@domain/utils/constants/messages';
 
 @Injectable()
 export class UserService {
