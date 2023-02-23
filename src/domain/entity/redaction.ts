@@ -1,7 +1,7 @@
+import { School } from "@domain/entity/school";
+import { Category } from "@domain/entity/category";
+import { Author } from "@domain/entity/author";
 
-import { School } from "@application/entities/school";
-import { Category } from "@application/entities/category";
-import { Author } from "@application/entities/author";
 
 export interface Redaction {
   id: number;

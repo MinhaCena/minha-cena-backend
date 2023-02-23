@@ -18,21 +18,20 @@ model Users {
   unLocked     DateTime?
   createdAt    DateTime       @default(now())
   updatedAt    DateTime?
-  registrants  Registrants[]
+  teachers     Teachers[]
   illustrators Illustrators[]
+  schools      Schools[]
 
   @@index([id])
   @@map("users")
 }
 
-model Registrants {
+model Teachers {
   id         Int         @unique @default(autoincrement())
-  user_id    Int?        @unique
-  users      Users?      @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  name       String
-  email      String
-  occupation String
-  whatapp    String
+  user_id    Int         @unique
+  users      Users       @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name       String?
+  occupation String?
   createAt   DateTime    @default(now())
   updatedAt  DateTime?
   registers  Registers[]
@@ -42,31 +41,37 @@ model Registrants {
 }
 
 model Registers {
-  id            Int         @unique @default(autoincrement())
-  school        Schools     @relation(fields: [school_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  school_id     Int         @unique
-  registrant    Registrants @relation(fields: [registrant_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  registrant_id Int         @unique
-  createAt      DateTime    @default(now())
+  id         Int      @unique @default(autoincrement())
+  school     Schools  @relation(fields: [school_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  school_id  Int      @unique
+  teachers   Teachers @relation(fields: [teacher_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  teacher_id Int      @unique
+  createAt   DateTime @default(now())
 
   @@index([id])
   @@map("registers")
 }
 
 model Schools {
-  id         Int          @unique @default(autoincrement())
-  name       String
-  cnpj_inap  String
-  city       String
-  uf         String
-  type       String
-  email      String?      @unique
-  phone      String
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime?
-  redactions Redactions[]
-  authors    Authors[]
-  registers  Registers[]
+  id                    Int          @unique @default(autoincrement())
+  user_id               Int?         @unique
+  users                 Users?       @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name                  String
+  cnpj_inap             String
+  city                  String
+  uf                    String
+  type                  String?
+  email                 String?      @unique
+  phone                 String?
+  name_registrant       String
+  email_registrant      String
+  occupation_registrant String?
+  whatapp_registrant    String
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime?
+  redactions            Redactions[]
+  authors               Authors[]
+  registers             Registers[]
 
   @@index([id])
   @@map("schools")

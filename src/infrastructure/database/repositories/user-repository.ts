@@ -1,10 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { Injectable } from '@nestjs/common';
-import { PrismaUserMapper } from '@infra/database/mappers/prisma-user-mapper';
-import { User } from '@application/entities/user';
-import { UserClient } from '@application/client/user-client';
-import { PrismaService } from '@infra/database/prisma-service';
+import { PrismaUserMapper } from '../../database/mappers/prisma-user-mapper';
+
+import { UserClient } from '../../../domain/client/user-client';
+import { PrismaService } from '../../database/prisma-service';
+import { User } from '@domain/entity/user';
 
 @Injectable()
 export class UserRepository implements UserClient {
@@ -17,13 +18,12 @@ export class UserRepository implements UserClient {
   }
   async findByEmail(data: User): Promise<null | User> {
     try {
-      await this.prismaService.users.findFirst({
+      return await this.prismaService.users.findFirst({
         where: {
           email: data.email,
         },
       });
-      return data;
-    } catch (err) {
+    } catch (err: Error) {
       if (err) {
         return null;
       }

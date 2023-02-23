@@ -1,12 +1,14 @@
-import { UserServices } from '@application/services/user-services';
 import { Provider } from '@nestjs/common';
-import { PrismaService } from '@infra/database/prisma-service';
-import { Logger } from '../utils/logger';
-import { ValidationService } from "@application/services/validation-service";
+import { PrismaService } from '../infrastructure/database/prisma-service';
+import { Logger } from '../domain/utils/logger';
+import { EmailValidation } from '@domain/validations/email-validation';
+import { UserService } from '@domain/service/user-service';
+import { LoginValidation } from '@domain/validations/login-validation';
 
 export const serviceProviders: Provider[] = [
-  UserServices,
+  UserService,
   PrismaService,
   Logger,
-  ValidationService,
+  EmailValidation,
+  LoginValidation,
 ];

@@ -1,5 +1,6 @@
-import { Redaction } from "@application/entities/redaction";
-import { Illustrator } from "@application/entities/illustrator";
+import { Redaction } from "@domain/entity/redaction";
+import { Illustrator } from "@domain/entity/illustrator";
+
 
 export interface Media {
   id: number;
