@@ -1,3 +1,4 @@
+import MESSAGE  from '@domain/utils/constants/messages';
 import {
   BadRequestException,
   Body,
@@ -25,7 +26,7 @@ export class UserController {
 
     return {
       statusCode: HttpStatus.OK,
-      message: 'user created successfully',
+      message: MESSAGE.SUCCESS.USER_CREATED,
     };
   }
 }
