@@ -46,7 +46,7 @@ model TeacherInstitution {
   createAt       DateTime  @default(now())
   updatedAt      DateTime?
 
-  @@map("teachersinstitutions")
+  @@map("teachers_institutions")
 }
 
 model Institution {
@@ -106,7 +106,7 @@ model ThemeEssay {
   createAt  DateTime  @default(now())
   updatedAt DateTime?
 
-  @@map("themesessays")
+  @@map("themes_essays")
 }
 
 model Essay {
