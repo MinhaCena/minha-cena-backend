@@ -1,13 +1,15 @@
 import { User } from '@domain/entity/user';
+import { Illustration } from './illustration';
 
 export interface Illustrator {
   id: number;
-  userId?: User;
+  user?: User;
   name: string;
   email: string;
-  cpf: string;
-  whatapp: string;
-  portifolio: string;
+  cpfCnpj: string;
+  whatsapp: string;
+  portfolio: string;
   createdAt: Date;
   updatedAt?: Date;
+  illustrations: Illustration[];
 }
