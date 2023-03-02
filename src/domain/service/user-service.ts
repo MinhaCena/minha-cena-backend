@@ -15,7 +15,7 @@ export class UserService {
   ) {}
   async createUser(data: User): Promise<ReturnType> {
     await this.userValidation.emailValidate(data);
-    // await this.passwordValidation.passwordValidate(data);
+    await this.passwordValidation.passwordValidate(data);
     const userAlreadyExists = await this.userClient.findByEmail(data);
     if (userAlreadyExists === null) {
       await this.userClient.create(data);
