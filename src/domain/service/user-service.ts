@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { UserClient } from '../client/user-client';
 import { User } from '../entity/user';
@@ -16,6 +17,7 @@ export class UserService {
   async createUser(data: User): Promise<ReturnType> {
     await this.userValidation.emailValidate(data);
     await this.passwordValidation.passwordValidate(data);
+    data.password = await bcrypt.hash(data.password, 10);
     const userAlreadyExists = await this.userClient.findByEmail(data);
     if (userAlreadyExists === null) {
       await this.userClient.create(data);
