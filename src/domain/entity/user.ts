@@ -1,6 +1,3 @@
-import { Illustrator } from './illustrator';
-import { Institution } from './institution';
-import { Teacher } from './teacher';
 
 export interface User {
   id: number;
@@ -11,7 +8,4 @@ export interface User {
   unLocked?: Date;
   createdAt: Date;
   updatedAt?: Date;
-  teachers: Teacher[];
-  illustrators: Illustrator[];
-  institutions: Institution[];
 }

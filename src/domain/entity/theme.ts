@@ -5,5 +5,4 @@ export interface Theme {
   theme: string;
   createdAt: Date;
   updatedAt?: Date;
-  essays: Essay[];
 }
