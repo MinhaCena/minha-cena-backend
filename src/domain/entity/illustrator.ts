@@ -11,5 +11,4 @@ export interface Illustrator {
   portfolio: string;
   createdAt: Date;
   updatedAt?: Date;
-  illustrations: Illustration[];
 }

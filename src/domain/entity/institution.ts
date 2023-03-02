@@ -1,11 +1,8 @@
 import { User } from '@domain/entity/user';
-import { Author } from './author';
-import { Essay } from './essay';
-import { Teacher } from './teacher';
 
 export interface Institution {
   id: number;
-  user: User;
+  user?: User;
   institutionType: number;
   institutionName: string;
   cnpjInep: string;
@@ -21,7 +18,4 @@ export interface Institution {
   registrantStatus: number;
   createAt: Date;
   updatedAt?: Date;
-  essays: Essay[];
-  authors: Author[];
-  teachers: Teacher[];
 }

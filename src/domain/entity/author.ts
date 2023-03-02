@@ -9,5 +9,4 @@ export interface Author {
   age: number;
   createdAt: Date;
   updatedAt?: Date;
-  essays: Essay[];
 }
