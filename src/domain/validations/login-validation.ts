@@ -1,12 +1,12 @@
 import { User } from '../entity/user';
 import { HttpStatus, UnauthorizedException } from '@nestjs/common';
-import PasswordValidator from 'password-validator';
+import * as passwordValidator from 'password-validator';
 import MESSAGE from '@domain/utils/constants/messages';
 
 
 export class LoginValidation {
   public async passwordValidate(user: User): Promise<boolean> {
-    const schema = new PasswordValidator();
+    const schema = new passwordValidator();
     schema
       .is()
       .min(8)

@@ -13,11 +13,11 @@ export class UserRepository implements UserClient {
     const raw = PrismaUserMapper.toPrisma(data);
     await this.prismaService.user.create({
       data: raw
-    })
+    });
   }
   async findByEmail(data: User): Promise<null | User> {
     try {
-      return await this.prismaService.users.findFirst({
+      return await this.prismaService.user.findFirst({
         where: {
           email: data.email,
         },
