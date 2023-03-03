@@ -8,6 +8,7 @@ export class PrismaUserMapper {
       email: user.email,
       password: user.password,
       role: user.role,
+      confirmed: user.confirmed,
       unLocked: user.unLocked,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
