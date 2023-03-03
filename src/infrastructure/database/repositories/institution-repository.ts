@@ -21,7 +21,6 @@ export class InstitutionRepository implements InstitutionClient{
       }
     }
   }
-
   async findByEmail(data: Institution): Promise<null | Institution> {
     try {
       return await this.prismaService.institution.findFirst({
@@ -32,6 +31,23 @@ export class InstitutionRepository implements InstitutionClient{
     } catch (err: Error) {
       if (err) {
         return null;
+      }
+    }
+  }
+  async updatedStatusInstitution(data: Institution) : Promise<null | Institution>{
+    try {
+      const raw = PrismaInstitutionMapper.toPrisma(data);
+      return await this.prismaService.institution.update({
+        where: {
+          id: raw.registrant_status,
+        },
+        data: {
+          registrant_status: 1,
+        },
+      })
+    } catch (err: Error){
+      if(err) {
+        return null
       }
     }
   }

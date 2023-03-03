@@ -25,4 +25,18 @@ export class InstitutionService {
       message: MESSAGE.ERROR.REGISTERED_INSTITUTION,
     };
   }
+
+  async updatedStatusInstitution(data: Institution): Promise<ReturnType>{
+    const updateInstitution = await this.institutionClient.updatedStatusInstitution(data);
+    if(updateInstitution === null) {
+      return {
+        name: 'error',
+        message: MESSAGE.ERROR.NOT_UPDATE_STATUS_INSTITUTION
+      }
+    }
+    return {
+      name: 'sucess',
+      message: MESSAGE.SUCCESS.UPDATE_STATUS_INSTITUTION
+    }
+  }
 }
