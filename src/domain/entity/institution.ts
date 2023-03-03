@@ -18,7 +18,7 @@ export interface Institution {
   registrantEmail: string;
   registrantOccupation?: string;
   registrantWhatsapp: string;
-  registrantStatus: number;
+  institutionStatus: number;
   createAt: Date;
   updatedAt?: Date;
   essays: Essay[];
