@@ -13,6 +13,4 @@ export interface Essay {
   status: string;
   createdAt: Date;
   updatedAt?: Date;
-  illustrations: Illustration[];
-  themes: Theme[];
 }
