@@ -65,7 +65,7 @@ model Institution {
   registrant_email      String
   registrant_occupation String?
   registrant_whatsapp   String
-  registrant_status     Int
+  institution_status     Int
   createdAt             DateTime  @default(now())
   updatedAt             DateTime?
   essays                Essay[]
