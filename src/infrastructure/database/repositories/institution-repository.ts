@@ -39,10 +39,10 @@ export class InstitutionRepository implements InstitutionClient{
       const raw = PrismaInstitutionMapper.toPrisma(data);
       return await this.prismaService.institution.update({
         where: {
-          id: raw.registrant_status,
+          id: raw.institution_status,
         },
         data: {
-          registrant_status: 1,
+          institution_status: 1,
         },
       })
     } catch (err: Error){
