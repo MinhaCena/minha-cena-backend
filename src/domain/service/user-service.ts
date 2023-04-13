@@ -1,9 +1,11 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { UserClient } from '../client/user-client';
 import { User } from '../entity/user';
 import { ReturnType } from '../types/ReturnType';
 import { EmailValidation } from '../validations/email-validation';
-import { LoginValidation } from "@domain/validations/login-validation";
+import { LoginValidation } from '@domain/validations/login-validation';
+import MESSAGE from '@domain/utils/constants/messages';
 
 @Injectable()
 export class UserService {
@@ -15,18 +17,19 @@ export class UserService {
   async createUser(data: User): Promise<ReturnType> {
     await this.userValidation.emailValidate(data);
     await this.passwordValidation.passwordValidate(data);
+    data.password = await bcrypt.hash(data.password, 10);
     const userAlreadyExists = await this.userClient.findByEmail(data);
     if (userAlreadyExists === null) {
       await this.userClient.create(data);
       return {
         name: 'success',
-        message: 'OK',
+        message: MESSAGE.SUCCESS.USER_CREATED,
       };
     }
 
     return {
       name: 'error',
-      message: 'User already exists!',
+      message: MESSAGE.ERROR.REGISTERED_USER,
     };
   }
 }

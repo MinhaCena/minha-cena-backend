@@ -2,7 +2,6 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Get,
   HttpStatus,
   Post,
 } from '@nestjs/common';
@@ -25,7 +24,7 @@ export class UserController {
 
     return {
       statusCode: HttpStatus.OK,
-      message: 'user created successfully',
+      message: data.message,
     };
   }
 }
