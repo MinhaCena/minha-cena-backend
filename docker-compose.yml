@@ -4,28 +4,34 @@ services:
 
   database:
     image: postgres
-    container_name: database
+    container_name: database_minha_cena
     restart: always
     ports:
       - '5439:5432'
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=minha_cena
+      - POSTGRES_DB=password
     volumes:
       - pgdata:/data/postgres
 
-#  app:
-#    build: .
-#    container_name: backend_minha_cena
-#    ports:
-#      - 3080:3080
-#    volumes:
-#      - .:/usr/apps
-#    links:
-#      - database
-#    depends_on:
-#      - database
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  app:
+    build: .
+    container_name: minha_cena
+    ports:
+      - 3080:3080
+    volumes:
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
 
 
 volumes:
