@@ -1,7 +1,7 @@
 import { User } from '../entity/user';
 import { HttpStatus, UnauthorizedException } from '@nestjs/common';
 import * as passwordValidator from 'password-validator';
-import MESSAGE from '@domain/utils/constants/messages';
+import MESSAGE from '../utils/constants/messages';
 
 
 export class LoginValidation {
