@@ -13,7 +13,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=password
     volumes:
-      - pgdata:/data/postgres
+      - pgdata:/var/lib/postgresql/data
 
   adminer:
     image: adminer
@@ -26,14 +26,12 @@ services:
     container_name: minha_cena
     ports:
       - 3080:3080
-    volumes:
-      - .:/usr/app
+    environment:
+      - DATABASE_URL=postgresql://root:password@database:5432/minha_cena
     links:
       - database
     depends_on:
       - database
 
-
 volumes:
   pgdata:
-    driver: local
