@@ -60,10 +60,10 @@ model Institution {
   state                 String
   school_type           Int?
   institution_email     String?   @unique
-  institution_phone     String?
+  institution_phone     String
   registrant_name       String
   registrant_email      String
-  registrant_occupation String?
+  registrant_occupation String
   registrant_whatsapp   String
   institution_status     Int
   createdAt             DateTime  @default(now())
