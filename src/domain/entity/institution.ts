@@ -10,10 +10,10 @@ export interface Institution {
   state: string;
   schoolType?: number;
   institutionEmail?: string;
-  institutionPhone?: string;
+  institutionPhone: string;
   registrantName: string;
   registrantEmail: string;
-  registrantOccupation?: string;
+  registrantOccupation: string;
   registrantWhatsapp: string;
   institutionStatus: number;
   createAt: Date;
