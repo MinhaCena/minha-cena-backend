@@ -45,17 +45,4 @@ export class IllustratorRepository implements IllustratorClient {
       }
     }
   }
-  // async getAll(data: Illustrator): Promise<Illustrator[]> {
-  //   try {
-  //     const illustrators = await this.prismaService.illustrator.findMany(data);
-  //     const newIllustrators = illustrators.map(
-  //       PrismaIllustratorMapper.toEntity,
-  //     );
-  //     return newIllustrators;
-  //   } catch (err: Error) {
-  //     if (err) {
-  //       return null;
-  //     }
-  //   }
-  //}
 }

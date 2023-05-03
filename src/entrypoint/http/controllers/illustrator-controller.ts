@@ -6,7 +6,6 @@ import {
   HttpStatus,
   Post,
   Param,
- // Get,
 } from '@nestjs/common';
 import { IllustratorService } from '@domain/service/illustrator-service';
 import { Illustrator } from '@domain/entity/illustrator';
@@ -41,9 +40,5 @@ export class IllustratorController {
       statusCode: HttpStatus.OK,
       message: data.message,
     };
-    // @Get()
-    // getAll() {
-    //  return this.illustratorService.getAllIllustrator();
-    // }
   }
 }
