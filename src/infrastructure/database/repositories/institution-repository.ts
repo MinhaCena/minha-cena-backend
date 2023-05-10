@@ -25,7 +25,7 @@ export class InstitutionRepository implements InstitutionClient{
     try {
       return await this.prismaService.institution.findFirst({
         where: {
-          institutionEmail: data.institutionEmail
+          institution_email: data.institutionEmail
         }
       })
     } catch (err: Error) {
