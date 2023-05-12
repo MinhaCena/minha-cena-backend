@@ -72,6 +72,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 
+<p align="center">
+<a href="http://nestjs.com/" target="blank"><img src="https://raw.githubusercontent.com/MinhaCena/.github/main/MinhaCena.jpeg" width="200" alt="Nest Logo" /></a>
+</p>
 
 ## O que é o MinhaCena.org?
 
