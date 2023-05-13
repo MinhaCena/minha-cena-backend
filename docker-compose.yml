@@ -4,16 +4,16 @@ services:
 
   database:
     image: postgres
-    container_name: database
+    container_name: database_minha_cena
     restart: always
     ports:
       - '5439:5432'
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=minha_cena
+      - POSTGRES_DB=password
     volumes:
-      - pgdata:/data/postgres
+      - pgdata:/var/lib/postgresql/data
 
   pgadmin: 
     image: dpage/pgadmin4
@@ -39,6 +39,17 @@ services:
 #      - database
 
 
+  app:
+    build: .
+    container_name: minha_cena
+    ports:
+      - 3080:3080
+    environment:
+      - DATABASE_URL=postgresql://root:password@database:5432/minha_cena
+    links:
+      - database
+    depends_on:
+      - database
+
 volumes:
   pgdata:
-    driver: local

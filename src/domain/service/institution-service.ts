@@ -1,8 +1,8 @@
 
 import { ReturnType } from "@domain/types/ReturnType";
-import MESSAGE from "@domain/utils/constants/messages";
+import MESSAGE from "../utils/constants/messages";
 import { Institution } from "@domain/entity/institution";
-import { InstitutionClient } from "@domain/client/institution-client";
+import { InstitutionClient } from "../client/institution-client";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
@@ -28,14 +28,14 @@ export class InstitutionService {
 
   async updatedStatusInstitution(data: Institution): Promise<ReturnType>{
     const updateInstitution = await this.institutionClient.updatedStatusInstitution(data);
-    if(updateInstitution === null) {
+    if(updateInstitution === undefined) {
       return {
         name: 'error',
         message: MESSAGE.ERROR.NOT_UPDATE_STATUS_INSTITUTION
       }
     }
     return {
-      name: 'sucess',
+      name: 'success',
       message: MESSAGE.SUCCESS.UPDATE_STATUS_INSTITUTION
     }
   }

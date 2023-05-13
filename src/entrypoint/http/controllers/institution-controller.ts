@@ -7,6 +7,7 @@ import {
 } from "@nestjs/common";
 import { InstitutionService } from "@domain/service/institution-service";
 import { Institution } from "@domain/entity/institution";
+//import { EmailService } from "@domain/service/email-service";
 
 
 @Controller('institution')
@@ -21,6 +22,8 @@ export class InstitutionController {
         message: data.message,
       });
     }
+
+    // this.emailService.sendEmail();
 
     return {
       statusCode: HttpStatus.OK,

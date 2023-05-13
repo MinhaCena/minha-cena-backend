@@ -34,7 +34,7 @@ export class InstitutionRepository implements InstitutionClient{
       }
     }
   }
-  async updatedStatusInstitution(data: Institution) : Promise<null | Institution>{
+  async updatedStatusInstitution(data: Institution) : Promise<null | Institution| undefined>{
     try {
       const raw = PrismaInstitutionMapper.toPrisma(data);
       return await this.prismaService.institution.update({
@@ -47,7 +47,7 @@ export class InstitutionRepository implements InstitutionClient{
       })
     } catch (err: Error){
       if(err) {
-        return null
+        return undefined
       }
     }
   }
