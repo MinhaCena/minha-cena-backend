@@ -15,7 +15,7 @@ export class PrismaInstitutionMapper {
       registrant_email: institution.registrantEmail,
       registrant_occupation: institution.registrantOccupation,
       registrant_whatsapp: institution.registrantWhatsapp,
-      registrant_status: institution.registrantStatus
+      institution_status: institution.institutionStatus
     };
   }
 }
