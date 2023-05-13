@@ -25,7 +25,7 @@ export class InstitutionRepository implements InstitutionClient{
     try {
       return await this.prismaService.institution.findFirst({
         where: {
-          institutionEmail: data.institutionEmail
+          institution_email: data.institutionEmail
         }
       })
     } catch (err: Error) {
@@ -39,10 +39,10 @@ export class InstitutionRepository implements InstitutionClient{
       const raw = PrismaInstitutionMapper.toPrisma(data);
       return await this.prismaService.institution.update({
         where: {
-          id: raw.registrant_status,
+          id: raw.institution_status,
         },
         data: {
-          registrant_status: 1,
+          institution_status: 1,
         },
       })
     } catch (err: Error){

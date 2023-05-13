@@ -60,12 +60,12 @@ model Institution {
   state                 String
   school_type           Int?
   institution_email     String?   @unique
-  institution_phone     String?
+  institution_phone     String
   registrant_name       String
   registrant_email      String
-  registrant_occupation String?
+  registrant_occupation String
   registrant_whatsapp   String
-  registrant_status     Int
+  institution_status    Int
   createdAt             DateTime  @default(now())
   updatedAt             DateTime?
   essays                Essay[]
@@ -114,7 +114,7 @@ model Essay {
   institution_id Int            @unique
   institution    Institution    @relation(fields: [institution_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   author_id      Int            @unique
-  author        Author         @relation(fields: [author_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  author         Author         @relation(fields: [author_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   title          String
   essay          String
   status         String
@@ -134,7 +134,7 @@ model Illustrator {
   email         String
   cpf_cnpj      String
   whatsapp      String
-  portfolio    String
+  portfolio     String
   createdAt     DateTime       @default(now())
   updatedAt     DateTime?
   illustrations Illustration[]
