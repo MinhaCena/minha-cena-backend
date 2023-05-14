@@ -7,7 +7,7 @@ export class EmailController {
 
   @Post()
   async sendEmailTwo() {
-    const to = 'thaisminas@minhacena.org';
+    const to = 'jubileucamundongo@minhacena.org';
     await this.emailService.sendEmail(to);
     return { message: 'E-mail enviado com sucesso!' };
   }

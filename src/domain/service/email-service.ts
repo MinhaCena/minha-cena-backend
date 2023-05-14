@@ -13,8 +13,8 @@ export class EmailService {
     try {
       const transporter = nodemailer.createTransport({
         host: this.configService.get<string>('HOST_EMAIL'),
-        port: 2525,
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
           user: this.configService.get<string>('USER_EMAIL'),
           pass: this.configService.get<string>('PASS_EMAIL')
@@ -34,7 +34,7 @@ export class EmailService {
       this.eventEmitter.emit('email.sent', new EmailSentEvent(to));
     } catch (error){
       this.eventEmitter.emit('email.sendError', new EmailSendErrorEvent(to, error));
-      throw error;
+      return error.message;
     }
   }
 }

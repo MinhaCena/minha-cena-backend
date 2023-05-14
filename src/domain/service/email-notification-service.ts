@@ -19,8 +19,8 @@ export class EmailNotificationService {
   async handleEmailSendError(event: EmailSendErrorEvent) {
     const transporter = nodemailer.createTransport({
       host: this.configService.get<string>('HOST_EMAIL'),
-      port: 2525,
-      secure: false,
+      port: 465,
+      secure: true,
       auth: {
         user: this.configService.get<string>('USER_EMAIL'),
         pass: this.configService.get<string>('PASS_EMAIL')
@@ -28,8 +28,8 @@ export class EmailNotificationService {
     });
 
     const mailOptions = {
-      from: 'atendimento@minhacena.org',
-      to: 'thaisminas@minhacena.org',
+      from: this.configService.get<string>('USER_EMAIL'),
+      to: this.configService.get<string>('USER_EMAIL'),
       subject: `Erro ao enviar email para ${event.to}`,
       text: `O seguinte erro ocorreu ao enviar um email para ${event.to}: ${event.error.message}`,
     };
