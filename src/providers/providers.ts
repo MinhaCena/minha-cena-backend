@@ -1,4 +1,4 @@
-import { UserRepository } from '../infrastructure/database/repositories/user-repository';
+import { UserRepository } from "@infrastructure/database/repositories/user-repository";
 import { UserService } from '@domain/service/user-service';
 import { UserClient } from '@domain/client/user-client';
 import { InstitutionRepository } from '@infrastructure/database/repositories/institution-repository';

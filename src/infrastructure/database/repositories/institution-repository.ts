@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma-service';
-import { PrismaInstitutionMapper } from '@infrastructure/database/mappers/prisma-institution-mapper';
+import { PrismaInstitutionMapper } from '../mappers/prisma-institution-mapper';
 import { Institution } from '@domain/entity/institution';
 import { InstitutionClient } from "@domain/client/institution-client";
 
@@ -17,7 +17,7 @@ export class InstitutionRepository implements InstitutionClient{
       });
     } catch (err: Error) {
       if (err) {
-        return null;
+        return err;
       }
     }
   }
