@@ -6,6 +6,10 @@ import { UserService } from '@domain/service/user-service';
 import { LoginValidation } from '@domain/validations/login-validation';
 import { InstitutionService } from "@domain/service/institution-service";
 import { IllustratorService } from '@domain/service/illustrator-service';
+import { EmailService } from "@domain/service/email-service";
+import { EmailNotificationService } from "@domain/service/email-notification-service";
+import { EmailSentEvent } from "@domain/event/email-sent-event";
+import { EmailSendErrorEvent } from "@domain/event/email-send-error-event";
 
 export const serviceProviders: Provider[] = [
   UserService,
@@ -15,4 +19,8 @@ export const serviceProviders: Provider[] = [
   Logger,
   EmailValidation,
   LoginValidation,
+  EmailService,
+  EmailNotificationService,
+  EmailSentEvent,
+  EmailSendErrorEvent
 ];

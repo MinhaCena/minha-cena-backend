@@ -11,33 +11,20 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=password
+      - POSTGRES_DB=minha_cena
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  pgadmin: 
+  pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
-    ports: 
+    ports:
       - '8080:80'
     environment:
       - PGADMIN_DEFAULT_PASSWORD=password
       - PGADMIN_DEFAULT_EMAIL=root@minhacena.com
     depends_on:
       - database
-
-#  app:
-#    build: .
-#    container_name: backend_minha_cena
-#    ports:
-#      - 3080:3080
-#    volumes:
-#      - .:/usr/apps
-#    links:
-#      - database
-#    depends_on:
-#      - database
-
 
   app:
     build: .
