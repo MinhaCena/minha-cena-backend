@@ -10,145 +10,147 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id           Int            @id @unique @default(autoincrement())
+model User {
+  id           Int           @id @unique @default(autoincrement())
   email        String
   password     String
   role         Int
+  confirmed    Int
   unLocked     DateTime?
-  createdAt    DateTime       @default(now())
+  createdAt    DateTime      @default(now())
   updatedAt    DateTime?
-  teachers     Teachers[]
-  illustrators Illustrators[]
-  schools      Schools[]
+  teachers     Teacher[]
+  illustrators Illustrator[]
+  institutions Institution[]
 
-  @@index([id])
   @@map("users")
 }
 
-model Teachers {
-  id         Int         @unique @default(autoincrement())
-  user_id    Int         @unique
-  users      Users       @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  name       String?
-  occupation String?
-  createAt   DateTime    @default(now())
-  updatedAt  DateTime?
-  registers  Registers[]
+model Teacher {
+  id           Int           @id @unique @default(autoincrement())
+  user_id      Int           @unique
+  user         User          @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name         String?
+  occupation   String?
+  createAt     DateTime      @default(now())
+  updatedAt    DateTime?
+  institutions Institution[] @relation("TeacherInstitution")
 
-  @@index([id])
-  @@map("registrants")
+  @@map("teachers")
 }
 
-model Registers {
-  id         Int      @unique @default(autoincrement())
-  school     Schools  @relation(fields: [school_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  school_id  Int      @unique
-  teachers   Teachers @relation(fields: [teacher_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  teacher_id Int      @unique
-  createAt   DateTime @default(now())
+model TeacherInstitution {
+  id             Int       @id @unique @default(autoincrement())
+  institution_id Int       @unique
+  teacher_id     Int       @unique
+  createAt       DateTime  @default(now())
+  updatedAt      DateTime?
 
-  @@index([id])
-  @@map("registers")
+  @@map("teachers_institutions")
 }
 
-model Schools {
-  id                    Int          @unique @default(autoincrement())
-  user_id               Int?         @unique
-  users                 Users?       @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  name                  String
-  cnpj_inap             String
+model Institution {
+  id                    Int       @id @unique @default(autoincrement())
+  user_id               Int?      @unique
+  user                  User?     @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  institution_type      Int
+  institution_name      String
+  cnpj_inep             String
   city                  String
-  uf                    String
-  type                  String?
-  email                 String?      @unique
-  phone                 String?
-  name_registrant       String
-  email_registrant      String
-  occupation_registrant String?
-  whatapp_registrant    String
-  createdAt             DateTime     @default(now())
+  state                 String
+  school_type           Int?
+  institution_email     String?   @unique
+  institution_phone     String
+  registrant_name       String
+  registrant_email      String
+  registrant_occupation String
+  registrant_whatsapp   String
+  institution_status    Int
+  createdAt             DateTime  @default(now())
   updatedAt             DateTime?
-  redactions            Redactions[]
-  authors               Authors[]
-  registers             Registers[]
+  essays                Essay[]
+  authors               Author[]
+  teachers              Teacher[] @relation("TeacherInstitution")
 
-  @@index([id])
-  @@map("schools")
+  @@map("institutions")
 }
 
-model Authors {
-  id         Int          @unique @default(autoincrement())
-  school_id  Int          @unique
-  school     Schools      @relation(fields: [school_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  name       String
-  class      String
-  age        Int
-  createAt   DateTime     @default(now())
-  updatedAt  DateTime?
-  redactions Redactions[]
+model Author {
+  id             Int         @id @unique @default(autoincrement())
+  institution_id Int         @unique
+  institution    Institution @relation(fields: [institution_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name           String
+  class          String
+  age            Int
+  createAt       DateTime    @default(now())
+  updatedAt      DateTime?
+  essays         Essay[]
 
-  @@index([id])
   @@map("authors")
 }
 
-model Categories {
-  id         Int          @unique @default(autoincrement())
-  category   String
-  createAt   DateTime     @default(now())
-  updatedAt  DateTime?
-  redactions Redactions[]
+model Theme {
+  id        Int       @id @unique @default(autoincrement())
+  theme     String
+  createAt  DateTime  @default(now())
+  updatedAt DateTime?
+  essays    Essay[]   @relation("ThemeEssay")
 
-  @@index([id])
-  @@map("categories")
+  @@map("themes")
 }
 
-model Redactions {
-  id          Int        @unique @default(autoincrement())
-  school_id   Int        @unique
-  schools     Schools    @relation(fields: [school_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  category_id Int        @unique
-  categories  Categories @relation(fields: [category_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  author_id   Int        @unique
-  authors     Authors    @relation(fields: [author_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  title       String
-  redaction   String
-  status      String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime?
-  drawings    Media[]
+model ThemeEssay {
+  id        Int       @id @unique @default(autoincrement())
+  theme_id  Int       @unique
+  essay_id  Int       @unique
+  createAt  DateTime  @default(now())
+  updatedAt DateTime?
 
-  @@index([id])
-  @@map("redactions")
+  @@map("themes_essays")
 }
 
-model Illustrators {
-  id         Int      @unique @default(autoincrement())
-  user_id    Int?     @unique
-  users      Users?   @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  name       String
-  email      String
-  cpf_cnpj   String
-  whatapp    String
-  portifolio String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
-  media      Media[]
+model Essay {
+  id             Int            @id @unique @default(autoincrement())
+  institution_id Int            @unique
+  institution    Institution    @relation(fields: [institution_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  author_id      Int            @unique
+  author         Author         @relation(fields: [author_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  title          String
+  essay          String
+  status         String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime?
+  illustrations  Illustration[]
+  themes         Theme[]        @relation("ThemeEssay")
 
-  @@index([id])
+  @@map("essays")
+}
+
+model Illustrator {
+  id            Int            @id @unique @default(autoincrement())
+  user_id       Int?           @unique
+  user          User?          @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name          String
+  email         String
+  cpf_cnpj      String
+  whatsapp      String
+  portfolio     String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime?
+  illustrations Illustration[]
+
   @@map("illustrators")
 }
 
-model Media {
-  id             Int          @unique @default(autoincrement())
-  redaction_id   Int          @unique
-  redactions     Redactions   @relation(fields: [redaction_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  illustrator_id Int          @unique
-  illustrators   Illustrators @relation(fields: [illustrator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+model Illustration {
+  id             Int         @id @unique @default(autoincrement())
+  essay_id       Int         @unique
+  essay          Essay       @relation(fields: [essay_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  illustrator_id Int         @unique
+  illustrator    Illustrator @relation(fields: [illustrator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   url_file       String
-  createdAt      DateTime     @default(now())
+  createdAt      DateTime    @default(now())
   updatedAt      DateTime?
 
-  @@index([id])
-  @@map("media")
+  @@map("illustrations")
 }

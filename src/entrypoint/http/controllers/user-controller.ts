@@ -1,9 +1,7 @@
-import MESSAGE  from '@domain/utils/constants/messages';
 import {
   BadRequestException,
   Body,
   Controller,
-  Get,
   HttpStatus,
   Post,
 } from '@nestjs/common';
@@ -26,7 +24,7 @@ export class UserController {
 
     return {
       statusCode: HttpStatus.OK,
-      message: MESSAGE.SUCCESS.USER_CREATED,
+      message: data.message,
     };
   }
 }

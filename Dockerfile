@@ -2,11 +2,16 @@ FROM node
 
 WORKDIR /usr/app
 
-COPY package.json ./
+RUN apt-get update && \
+    apt-get install -y postgresql-client
+
+COPY src/ src/
+COPY prisma/ prisma/
+COPY *.json .
 
 RUN npm install
-
-COPY . .
+RUN npx prisma generate
+RUN npm build
 
 EXPOSE 3080
 
