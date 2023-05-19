@@ -12,8 +12,8 @@ const MESSAGE = {
       USER_CREATED: "User created successfully!",
       INSTITUTION_CREATED: "Institution created successfully!",
       UPDATE_STATUS_INSTITUTION: "Status update successful",
-      ILLUSTRATOR_CREATED: "Illustrator created sucessfully!",
-      ILLUSTRATOR_DELETED: "Illustrator deleted successfully",
+      ILLUSTRATOR_CREATED: "Illustrator created successfully!",
+      ILLUSTRATOR_DELETED: "Illustrator deleted successfully!",
       ILLUSTRATOR_GETALL: "Successfully recovered illustrators"
     },
   };

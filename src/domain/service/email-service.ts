@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { EventEmitter2 } from "@nestjs/event-emitter";
-import { EmailSentEvent } from "@domain/event/email-sent-event";
-import { EmailSendErrorEvent } from "@domain/event/email-send-error-event";
+import { EmailSentEvent } from '../event/email-sent-event';
+import { EmailSendErrorEvent } from '../event/email-send-error-event';
 import { ConfigService } from "@nestjs/config";
 
 @Injectable()

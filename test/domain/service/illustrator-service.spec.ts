@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { IllustratorService } from '@domain/service/illustrator-service';
-import { IllustratorClient } from '@domain/client/Illustrator-client';
-import { Illustrator } from "@domain/entity/illustrator";
+import { IllustratorService } from '../../../src/domain/service/illustrator-service';
+import { EmailService } from '../../../src/domain/service/email-service';
+import { IllustratorClient } from '../../../src/domain/client/illustrator-client';
+import { Illustrator } from '../../../src/domain/entity/illustrator';
 import { faker } from '@faker-js/faker';
 import * as faker_br from 'faker-br';
-
 
 const dataPerson: Illustrator = {
     id: faker.datatype.number(),
@@ -35,7 +35,6 @@ interface IllustartorClientMock {
     delete: jest.Mock;
 }
 
-
 const illustratorClientMock: IllustartorClientMock = {
     findByEmail: jest.fn(),
     create: jest.fn(),
@@ -43,9 +42,18 @@ const illustratorClientMock: IllustartorClientMock = {
     delete: jest.fn(),
 };
 
+interface EmailServiceMock {
+    sendEmail: jest.Mock;
+}
+
+const emailServiceMock: EmailServiceMock = {
+    sendEmail: jest.fn()
+}
+
 describe("IllustratorService", () => {
     let illustratorService: IllustratorService;
     let illustratorClient: IllustratorClient;
+    let emailService: EmailService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -55,11 +63,16 @@ describe("IllustratorService", () => {
                     provide: IllustratorClient,
                     useValue: illustratorClientMock,
                 },
+                {
+                    provide: EmailService,
+                    useValue: emailServiceMock
+                }
             ],
         }).compile();
 
         illustratorService = module.get<IllustratorService>(IllustratorService);
         illustratorClient = module.get<IllustratorClient>(IllustratorClient);
+        emailService = module.get<EmailService>(EmailService);
     });
 
     describe("createIllustratorPerson", () => {
@@ -122,7 +135,7 @@ describe("IllustratorService", () => {
             const result = await illustratorService.deleteIllustrator(dataPerson.id);
 
             expect(result.name).toEqual("error");
-            expect(result.message).toEqual("Unable to delete illustrator!");
+            expect(result.message).toEqual("Illustrator not found");
         });
     });
 });
