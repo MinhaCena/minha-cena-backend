@@ -11,12 +11,19 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v3
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{secrets.EC2_SSH_KEY}}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "./"
-          REMOTE_HOST: "ec2-3-89-128-42.compute-1.amazonaws.com"
-          REMOTE_USER: "ec2-user"
-          TARGET: "/home/ec2-user"
+        with:
+          host: ec2-54-90-78-78.compute-1.amazonaws.com
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script:
+            docker-compose up -d
+
