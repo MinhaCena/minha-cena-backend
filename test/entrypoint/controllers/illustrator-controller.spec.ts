@@ -1,11 +1,12 @@
-import { IllustratorClient } from '../../../src/domain/client/illustrator-client';
 import { Test, TestingModule } from '@nestjs/testing';
+import { PrismaService } from '../../../src/infrastructure/database/prisma-service';
+import { PrismaIllustratorMapper } from '../../../src/infrastructure/database/mappers/prisma-illustrator-mapper';
 import { IllustratorController } from '../../../src/entrypoint/http/controllers/illustrator-controller';
-import { IllustratorService } from '../../../src/domain/service/illustrator-service';
+import { IllustratorService } from '../../../domain/service/illustrator-service';
 import { HttpStatus } from '@nestjs/common';
 import MESSAGE from '../../../src/domain/utils/constants/messages';
 import { Illustrator } from '../../../src/domain/entity/illustrator';
-import { EmailService } from '../../../src/domain/service/email-service';
+// import { EmailService } from '../../../src/domain/service/email-service';
 import { faker } from '@faker-js/faker';
 import * as faker_br from 'faker-br';
 
@@ -32,61 +33,38 @@ const dataCompany: Illustrator = {
 };
 
 describe('IllustratorController', () => {
-  let illustratorController: IllustratorController;
-  let illustratorService: IllustratorService;
-  let illustratorClient: IllustratorClient;
-  let emailService: EmailService;
+  let controller: IllustratorController;
+  let prismaServiceMock: jest.Mocked<PrismaService>;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [IllustratorController],
-      providers: [IllustratorService, EmailService],
-    }).compile();
+  beforeEach(() => {
+    prismaServiceMock = {
+      illustrator: {
+        create: jest.fn(),
+        findFirst: jest.fn(),
+        delete: jest.fn(),
+      },
+    } as unknown as jest.Mocked<PrismaService>;
+    controller = new IllustratorController(prismaServiceMock);
 
-    illustratorController = module.get<IllustratorController>(
-      IllustratorController,
-    );
-    illustratorService = module.get<IllustratorService>(IllustratorService);
-    emailService = module.get<EmailService>(EmailService);
-  });
-
-  describe('createIllustratorPerson', () => {
-    it('should return success statusCode when creating a person illustrator', async () => {
-      const expectedResult = {
-        statusCode: HttpStatus.OK,
-      };
-      const serviceReturn = {
-        name: 'success',
-        message: MESSAGE.SUCCESS.ILLUSTRATOR_CREATED,
-      };
-      jest
-        .spyOn(illustratorService, 'createIllustrator')
-        .mockResolvedValue(serviceReturn);
-
-      const result = await illustratorController.createIllustrator(dataPerson);
-
-      expect(result.statusCode).toBe(expectedResult);
-      expect(illustratorService.createIllustrator).toHaveBeenCalled();
+    describe('createIllustratorPerson', () => {
+      it('should create an person illustrator', async () => {
+        const raw = PrismaIllustratorMapper.toPrisma(dataPerson);
+        // @ts-ignore
+        prismaServiceMock.illustrator.createIllustrator(dataPerson);
+        await controller.createIllustrator(dataPerson);
+  
+        expect(prismaServiceMock.illustrator.create).toHaveBeenCalledTimes(2);
+        expect(prismaServiceMock.illustrator.create).toHaveBeenCalledWith({
+          data: raw,
+        });
+      });
+      it('should return null if there is an error', async () => {
+        prismaServiceMock.illustrator.create(null);
+        const result = await illustratorController.createIllustrator(dataPerson);
+  
+        expect(result).toBeUndefined();
+      });
     });
-  });
-  it('should return bad request statusCode when creating a person illustrator fails', async () => {
-    const expectedResult = {
-      statusCode: HttpStatus.BAD_REQUEST,
-    };
-    const serviceReturn = {
-      name: 'error',
-      message: MESSAGE.ERROR.REGISTERED_ILLUSTRATOR,
-    };
-    jest
-      .spyOn(illustratorService, 'createIllustrator')
-      .mockResolvedValue(serviceReturn);
-
-    const result = await illustratorController.createIllustrator(dataPerson);
-
-    expect(result.statusCode).toBe(expectedResult);
-    expect(illustratorService.createIllustrator).toHaveBeenCalled();
-  });
-
   describe('createIllustratorCompany', () => {
     it('should return success statusCode when creating a company illustrator', async () => {
       const expectedResult = {
@@ -103,7 +81,7 @@ describe('IllustratorController', () => {
       const result = await illustratorController.createIllustrator(dataCompany);
 
       expect(result.statusCode).toBe(expectedResult);
-      expect(illustratorService.createIllustrator).toHaveBeenCalled();
+      expect(illustratorService.createIllustrator).toHaveBeenCalledWith(dataCompany);
     });
   });
   it('should return bad request statusCode when creating a company illustrator fails', async () => {
@@ -121,9 +99,9 @@ describe('IllustratorController', () => {
     const result = await illustratorController.createIllustrator(dataCompany);
 
     expect(result.statusCode).toBe(expectedResult);
-    expect(illustratorService.createIllustrator).toHaveBeenCalled();
+    expect(illustratorService.createIllustrator).toHaveBeenCalledWith(dataCompany);
   });
-  describe('deleteIllustrator', () => {
+  describe('remove', () => {
     it('should return the statusCode', async () => {
       const expectedResult = {
         statusCode: HttpStatus.OK,
@@ -138,8 +116,8 @@ describe('IllustratorController', () => {
 
       const result = await illustratorController.remove(dataPerson.id);
 
-      expect(result).toBe(expectedResult);
-      expect(illustratorService.deleteIllustrator).toHaveBeenCalled();
+      expect(result).toEqual(expectedResult);
+      expect(illustratorService.deleteIllustrator).toHaveBeenCalledWith(dataPerson.id);
     });
   });
   it('should return the statusCode', async () => {
@@ -157,6 +135,6 @@ describe('IllustratorController', () => {
     const result = await illustratorController.remove(dataPerson.id);
 
     expect(result).toBe(expectedResult);
-    expect(illustratorService.deleteIllustrator).toHaveBeenCalled();
+    expect(illustratorService.deleteIllustrator).toHaveBeenCalledWith(dataPerson.id);
   });
 });

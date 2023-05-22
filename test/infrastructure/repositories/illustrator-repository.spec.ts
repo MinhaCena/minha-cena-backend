@@ -34,8 +34,8 @@ describe('IllustratorRepository', () => {
   beforeEach(() => {
     prismaServiceMock = {
       illustrator: {
-        findFirst: jest.fn(),
         create: jest.fn(),
+        findFirst: jest.fn(),
         delete: jest.fn(),
       },
     } as unknown as jest.Mocked<PrismaService>;
@@ -81,19 +81,20 @@ describe('IllustratorRepository', () => {
       expect(result).toBeUndefined();
     });
   });
+  
   describe('delete', () => {
     it('should exclude a person illustrator', async () => {
       const raw = PrismaIllustratorMapper.toPrisma(dataPerson);
       // @ts-ignore
-      prismaServiceMock.illustrator.delete(dataPerson);
+      prismaServiceMock.illustrator.delete(dataPerson.id);
       await repository.delete(dataPerson.id);
 
       expect(prismaServiceMock.illustrator.delete).toHaveBeenCalledTimes(2);
       expect(prismaServiceMock.illustrator.delete).toHaveBeenCalledWith({
-        data: raw,
         where: {
-            id: dataPerson.id,
-          },
+          id: dataPerson.id,
+        },
+        data: raw,
       });
     });
     it('should return null if there is an error', async () => {
@@ -108,15 +109,15 @@ describe('IllustratorRepository', () => {
     it('should exclude a company illustrator', async () => {
       const raw = PrismaIllustratorMapper.toPrisma(dataCompany);
       // @ts-ignore
-      prismaServiceMock.illustrator.delete(dataCompany);
+      prismaServiceMock.illustrator.delete(dataCompany.id);
       await repository.delete(dataCompany.id);
 
       expect(prismaServiceMock.illustrator.delete).toHaveBeenCalledTimes(2);
       expect(prismaServiceMock.illustrator.delete).toHaveBeenCalledWith({
-        data: raw,
         where: {
           id: dataCompany.id,
         },
+        data: raw,
       });
     });
     it('should return null if there is an error', async () => {
