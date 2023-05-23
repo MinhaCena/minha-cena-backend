@@ -9,7 +9,9 @@ import {
 } from '@nestjs/common';
 import { IllustratorService } from '@domain/service/illustrator-service';
 import { Illustrator } from '@domain/entity/illustrator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('illustrators')
 @Controller('illustrator')
 export class IllustratorController {
   constructor(private illustratorService: IllustratorService) {}

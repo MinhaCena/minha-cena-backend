@@ -29,6 +29,7 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/event-emitter": "^1.4.1",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^6.3.0",
     "@prisma/client": "^4.14.0",
     "@types/bcrypt": "^5.0.0",
     "@types/validator": "^13.7.12",
@@ -42,6 +43,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.6.3",
     "validator": "^13.9.0"
   },
   "devDependencies": {

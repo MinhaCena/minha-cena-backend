@@ -18,7 +18,7 @@ const institution: Institution = {
   registrantEmail: "Euna34@gmail.com",
   registrantOccupation: 'secretaria',
   registrantWhatsapp: "284.345.7283",
-  registrantStatus: 0,
+  institutionStatus: 0,
   createAt: new Date(),
   updatedAt: new Date()
 };

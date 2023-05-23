@@ -7,8 +7,9 @@ import {
 } from '@nestjs/common';
 import { User } from "@domain/entity/user";
 import { UserService } from "@domain/service/user-service";
+import { ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('users')
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}

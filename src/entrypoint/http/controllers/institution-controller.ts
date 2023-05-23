@@ -8,8 +8,10 @@ import {
 import { InstitutionService } from "@domain/service/institution-service";
 import { Institution } from "@domain/entity/institution";
 import { EmailService } from "@domain/service/email-service";
+import { ApiTags } from "@nestjs/swagger";
 
 
+@ApiTags('institutions')
 @Controller('institution')
 export class InstitutionController {
   constructor(private institutionService: InstitutionService) {}

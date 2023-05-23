@@ -18,7 +18,7 @@ const data: Institution = {
   registrantEmail: faker.internet.email(),
   registrantOccupation: 'secretaria',
   registrantWhatsapp: faker.phone.number(),
-  registrantStatus: 0,
+  institutionStatus: 0,
   createAt: new Date(),
   updatedAt: new Date(),
 };
