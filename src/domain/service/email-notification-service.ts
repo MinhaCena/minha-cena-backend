@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { EmailSentEvent } from '../event/email-sent-event';
-import { EmailSendErrorEvent } from "@domain/event/email-send-error-event";
 import * as nodemailer from 'nodemailer';
 import { ConfigService } from "@nestjs/config";
+import { EmailSendErrorEvent } from "../event/email-send-error-event";
 
 @Injectable()
 export class EmailNotificationService {
