@@ -1,9 +1,10 @@
-import { ReturnType } from '@domain/types/ReturnType';
-import MESSAGE from '../utils/constants/messages';
-import { Illustrator } from '../entity/illustrator';
-import { IllustratorClient } from '../client/illustrator-client';
+
 import { Injectable } from '@nestjs/common';
-import { EmailService } from '../service/email-service';
+import { EmailService } from "../service/email-service";
+import { IllustratorClient } from "../client/illustrator-client";
+import { Illustrator } from "../entity/illustrator";
+import { ReturnType } from "../types/ReturnType";
+import MESSAGE from "../utils/constants/messages";
 
 @Injectable()
 export class IllustratorService {

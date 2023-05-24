@@ -9,7 +9,8 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "rootDir": "./src",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -18,10 +19,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@domain/*":["./src/domain/*"],
-      "@entrypoint/*":["./src/entrypoint/*"],
-      "@infrastructure/*":["./src/infrastructure/*"],
-      "@test/*":["./ioc-providers/*"]
+      "@domain/*":["src/domain/*"],
+      "@entrypoint/*":["src/entrypoint/*"],
+      "@infrastructure/*":["src/infrastructure/*"],
+      "@providers/*": ["src/providers/*"],
+      "@test/*":["test/*"]
     }
   }
 }

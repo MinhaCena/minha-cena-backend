@@ -5,8 +5,8 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { User } from "@domain/entity/user";
-import { UserService } from "@domain/service/user-service";
+import { UserService } from "../../../domain/service/user-service";
+import { User } from "../../../domain/entity/user";
 
 
 @Controller('user')

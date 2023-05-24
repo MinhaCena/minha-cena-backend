@@ -1,8 +1,5 @@
-import { Institution } from "@domain/entity/institution";
-import { Theme } from "@domain/entity/theme";
-import { Author } from "@domain/entity/author";
-import { Illustration } from "./illustration";
-
+import { Institution } from "./institution";
+import { Author } from "./author";
 
 export interface Essay {
   id: number;

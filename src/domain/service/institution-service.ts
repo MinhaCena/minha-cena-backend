@@ -1,10 +1,12 @@
 
-import { ReturnType } from "@domain/types/ReturnType";
+
 import MESSAGE from "../utils/constants/messages";
-import { Institution } from "@domain/entity/institution";
+
 import { InstitutionClient } from "../client/institution-client";
 import { Injectable } from "@nestjs/common";
 import { EmailService } from '../../domain/service/email-service';
+import { Institution } from "../entity/institution";
+import { ReturnType } from "../types/ReturnType";
 
 @Injectable()
 export class InstitutionService {
