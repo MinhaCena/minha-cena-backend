@@ -4,7 +4,7 @@ import { Author } from "@domain/entity/author";
 import { Illustration } from "./illustration";
 
 
-export interface Essay {
+export class Essay {
   id: number;
   institution: Institution;
   author: Author;
