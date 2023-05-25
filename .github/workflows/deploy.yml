@@ -59,12 +59,14 @@ jobs:
 
       - name: Set environment variables
         run: |
-          mkdir $HOME/.env
-          echo "HOST_EMAIL=${{ secrets.HOST_EMAIL }}" >> $HOME/.env/.env.prod
-          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> $HOME/.env/.env.prod
-          echo "PASS_EMAIL=${{ secrets.PASS_EMAIL }}" >> $HOME/.env/.env.prod
-          echo "EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}" >> $HOME/.env/.env.prod
-          echo "FROM_EMAIL=${{ secrets.FROM_EMAIL }}" >> $HOME/.env/.env.prod
-          echo "SUBJECT_EMAIL_REGISTER=${{ secrets.SUBJECT_EMAIL_REGISTER }}" >> $HOME/.env/.env.prod
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $HOME/.env/.env.prod
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $HOME/.env/.env.prod
+          echo "HOST_EMAIL=${{ secrets.HOST_EMAIL }}" > .env.prod
+          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env.prod
+          echo "PASS_EMAIL=${{ secrets.PASS_EMAIL }}" >> .env.prod
+          echo "EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}" >> .env.prod
+          echo "FROM_EMAIL=${{ secrets.FROM_EMAIL }}" >> .env.prod
+          echo "SUBzJECT_EMAIL_REGISTER=${{ secrets.SUBJECT_EMAIL_REGISTER }}" >> .env.prod
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env.prod
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.prod
+
+      - name: Copy .env.prod to AWS instance
+        run: scp -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} .env.prod ec2-user@${{ secrets.REMOTE_HOST }}:/home/ec2-user/.env.prod
