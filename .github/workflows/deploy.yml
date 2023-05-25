@@ -56,25 +56,3 @@ jobs:
           AWS_REGION: us-east-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          HOST_EMAIL: ${{ secrets.HOST_EMAIL }}
-          USER_EMAIL: ${{ secrets.USER_EMAIL }}
-          PASS_EMAIL: ${{ secrets.PASS_EMAIL }}
-          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
-          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
-          SUBzJECT_EMAIL_REGISTER: ${{ secrets.SUBJECT_EMAIL_REGISTER }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-
-      - name: Set environment variables
-        run: |
-          echo "HOST_EMAIL=${{ secrets.HOST_EMAIL }}" > .env.prod
-          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env.prod
-          echo "PASS_EMAIL=${{ secrets.PASS_EMAIL }}" >> .env.prod
-          echo "EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}" >> .env.prod
-          echo "FROM_EMAIL=${{ secrets.FROM_EMAIL }}" >> .env.prod
-          echo "SUBzJECT_EMAIL_REGISTER=${{ secrets.SUBJECT_EMAIL_REGISTER }}" >> .env.prod
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env.prod
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.prod
-
-      - name: Copy .env.prod to AWS instance
-        run: scp -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} .env.prod ec2-user@${{ secrets.REMOTE_HOST }}:/home/ec2-user/.env.prod
