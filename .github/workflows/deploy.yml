@@ -39,7 +39,10 @@ jobs:
           SOURCE: ./
           TARGET: /home/ec2-user
           ARGS: -rltgoDzvO --delete
-          SCRIPT: docker-compose up -d
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            docker-compose up -d
           SSH_CMD_ARGS: -o StrictHostKeyChecking=no
         env:
           AWS_DEFAULT_REGION: us-east-1
