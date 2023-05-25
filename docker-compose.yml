@@ -30,7 +30,7 @@ services:
     image: minhacena/minha-cena-backend_app
     container_name: minha_cena
     ports:
-      - 3080:3080
+      - 80:3080
     environment:
       - DATABASE_URL=postgresql://root:password@database:5432/minha_cena
     links:
