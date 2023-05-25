@@ -38,7 +38,7 @@ jobs:
           REMOTE_PORT: 22
           SOURCE: ./
           TARGET: /home/ec2-user
-          ARGS: -rltgoDzvO --delete
+          ARGS: -rltgoDzvO
           SCRIPT_AFTER: |
             whoami
             ls -al
