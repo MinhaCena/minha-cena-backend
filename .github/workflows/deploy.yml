@@ -15,7 +15,9 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
 #      - name: Build and Push containers
 #        uses: isbang/compose-action@v1.4.1
@@ -42,6 +44,9 @@ jobs:
           SCRIPT_AFTER: |
             whoami
             ls -al
+            sudo systemctl start docker
+            sudo docker login
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             sudo docker-compose up -d
           SSH_CMD_ARGS: -o StrictHostKeyChecking=no
         env:
