@@ -50,7 +50,6 @@ jobs:
             sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
             sudo systemctl start docker
             sudo docker login
-            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             sudo docker-compose up -d
           SSH_CMD_ARGS: -o StrictHostKeyChecking=no
         env:
