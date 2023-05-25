@@ -17,10 +17,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and run containers
-        uses: isbang/compose-action@v1.4.1
-        with:
-          compose-file: docker-compose.yml
+#      - name: Build and Push containers
+#        uses: isbang/compose-action@v1.4.1
+#        with:
+#          compose-file: docker-compose.yml
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

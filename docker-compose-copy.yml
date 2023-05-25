@@ -27,7 +27,7 @@ services:
       - database
 
   app:
-    image: minhacena/minha-cena-backend_app
+    build: .
     container_name: minha_cena
     ports:
       - 3080:3080
