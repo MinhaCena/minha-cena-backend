@@ -1,7 +1,7 @@
 import { Essay } from '@domain/entity/essay';
 import { Illustrator } from '@domain/entity/illustrator';
 
-export interface Illustration {
+export class Illustration {
   id: number;
   essay: Essay;
   illustrator: Illustrator;

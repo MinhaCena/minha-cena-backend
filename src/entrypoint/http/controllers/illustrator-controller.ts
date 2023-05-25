@@ -5,17 +5,24 @@ import {
   Delete,
   HttpStatus,
   Post,
-  Param,
-} from '@nestjs/common';
+  Param, HttpCode
+} from "@nestjs/common";
 import { IllustratorService } from '@domain/service/illustrator-service';
 import { Illustrator } from '@domain/entity/illustrator';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiTags } from "@nestjs/swagger";
 
 @ApiTags('illustrators')
 @Controller('illustrator')
 export class IllustratorController {
   constructor(private illustratorService: IllustratorService) {}
   @Post()
+  @HttpCode(201)
+  @ApiCreatedResponse({
+    status: 201,
+    description: 'Illustrator created sucessfully!',
+  })
+  @ApiBadRequestResponse({ status: 400, description: 'Illustrator already exists!' })
+  @ApiBody({ type: Illustrator })
   async createIllustrator(@Body() illustrator: Illustrator) {
     const data = await this.illustratorService.createIllustrator(illustrator);
     if (data.name === 'error') {

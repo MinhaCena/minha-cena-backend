@@ -4,7 +4,6 @@ import { serviceProviders } from '../providers/service-providers';
 import { UserController } from '@entrypoint/http/controllers/user-controller';
 import { InstitutionRepository } from "@infrastructure/database/repositories/institution-repository";
 import { InstitutionController } from "@entrypoint/http/controllers/institution-controller";
-import { EmailController } from "@entrypoint/http/controllers/email-controller";
 import { EventEmitterModule } from "@nestjs/event-emitter";
 import { ConfigModule } from "@nestjs/config";
 import { UserRepository } from "@infrastructure/database/repositories/user-repository";
@@ -18,7 +17,7 @@ import { IllustratorRepository } from '@infrastructure/database/repositories/ill
     }),
     EventEmitterModule.forRoot(),
   ],
-  controllers: [UserController, InstitutionController, EmailController, IllustratorController],
+  controllers: [UserController, InstitutionController, IllustratorController],
   providers: [...providers, ...serviceProviders, UserRepository, InstitutionRepository, IllustratorRepository],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { User } from '@domain/entity/user';
 
-export interface Institution {
+export class Institution {
   id: number;
   user?: User;
   institutionType: number;

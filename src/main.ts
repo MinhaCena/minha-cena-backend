@@ -10,15 +10,14 @@ async function bootstrap() {
   app.setViewEngine('hbs');
 
   const config = new DocumentBuilder()
-    .setTitle('Documentação API Minha Cena')
+    .setTitle('API - Minha Cena')
     .setDescription(
-      'API responsável por cadastrar usuários, instituições e ilustradores',
+      'API responsável pelo cadastro e interação na plataforma entre usuários, instituições e ilustradores',
     )
     .setVersion('0.1.0')
     .addTag('users')
     .addTag('institutions')
     .addTag('illustrators')
-    .addTag('emails')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

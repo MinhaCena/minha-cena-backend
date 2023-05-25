@@ -1,6 +1,6 @@
 import { User } from '@domain/entity/user';
 
-export interface Illustrator {
+export class Illustrator {
   id: number;
   user?: User;
   name: string;
