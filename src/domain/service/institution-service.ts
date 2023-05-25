@@ -5,6 +5,7 @@ import { Institution } from "@domain/entity/institution";
 import { InstitutionClient } from "../client/institution-client";
 import { Injectable } from "@nestjs/common";
 import { EmailService } from "@domain/service/email-service";
+import { Logger } from "@domain/utils/logger";
 
 @Injectable()
 export class InstitutionService {
