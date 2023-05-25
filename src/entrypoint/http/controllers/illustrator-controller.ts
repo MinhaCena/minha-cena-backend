@@ -5,11 +5,20 @@ import {
   Delete,
   HttpStatus,
   Post,
-  Param, HttpCode
-} from "@nestjs/common";
+  Param,
+  HttpCode,
+} from '@nestjs/common';
 import { IllustratorService } from '@domain/service/illustrator-service';
 import { Illustrator } from '@domain/entity/illustrator';
-import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiTags,
+  ApiParam,
+  ApiOkResponse,
+} from '@nestjs/swagger';
+import MESSAGE from '@domain/utils/constants/messages';
 
 @ApiTags('illustrators')
 @Controller('illustrator')
@@ -19,9 +28,12 @@ export class IllustratorController {
   @HttpCode(201)
   @ApiCreatedResponse({
     status: 201,
-    description: 'Illustrator created sucessfully!',
+    description: MESSAGE.SUCCESS.ILLUSTRATOR_CREATED,
   })
-  @ApiBadRequestResponse({ status: 400, description: 'Illustrator already exists!' })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: MESSAGE.ERROR.REGISTERED_ILLUSTRATOR,
+  })
   @ApiBody({ type: Illustrator })
   async createIllustrator(@Body() illustrator: Illustrator) {
     const data = await this.illustratorService.createIllustrator(illustrator);
@@ -37,6 +49,15 @@ export class IllustratorController {
     };
   }
   @Delete(':id')
+  @HttpCode(200)
+  @ApiOkResponse({
+    status: 200,
+    description: MESSAGE.SUCCESS.ILLUSTRATOR_DELETED,
+  })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: MESSAGE.ERROR.ILLUSTRATOR_INVALID,
+  })
   async remove(@Param('id') id: number) {
     const data = await this.illustratorService.deleteIllustrator(id);
     if (data.name === 'error') {
