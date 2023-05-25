@@ -57,3 +57,13 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+      - name: Set environment variables
+        run: |
+          echo "HOST_EMAIL=${{ secrets.HOST_EMAIL }}" >> .env.prod
+          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env.prod
+          echo "PASS_EMAIL=${{ secrets.PASS_EMAIL }}" >> .env.prod
+          echo "EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}" >> .env.prod
+          echo "FROM_EMAIL=${{ secrets.FROM_EMAIL }}" >> .env.prod
+          echo "SUBJECT_EMAIL_REGISTER=${{ secrets.SUBJECT_EMAIL_REGISTER }}" >> .env.prod
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env.prod
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.prod
