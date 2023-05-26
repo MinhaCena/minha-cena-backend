@@ -6,15 +6,15 @@ import {
   Post,
   HttpCode,
 } from '@nestjs/common';
-import { InstitutionService } from '@domain/service/institution-service';
-import { Institution } from '@domain/entity/institution';
+import { InstitutionService } from '../../../domain/service/institution-service';
+import { Institution } from '../../../domain/entity/institution';
 import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import MESSAGE from '@domain/utils/constants/messages';
+import MESSAGE from '../../../domain/utils/constants/messages';
 
 @ApiTags('institutions')
 @Controller('institution')

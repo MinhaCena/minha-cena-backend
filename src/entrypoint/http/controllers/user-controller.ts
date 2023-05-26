@@ -6,15 +6,15 @@ import {
   Post,
   HttpCode,
 } from '@nestjs/common';
-import { User } from '@domain/entity/user';
-import { UserService } from '@domain/service/user-service';
+import { User } from '../../../domain/entity/user';
+import { UserService } from '../../../domain/service/user-service';
 import {
   ApiTags,
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
 } from '@nestjs/swagger';
-import MESSAGE from '@domain/utils/constants/messages';
+import MESSAGE from '../../../domain/utils/constants/messages';
 
 @ApiTags('users')
 @Controller('user')

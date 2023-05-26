@@ -1,4 +1,4 @@
-import { Illustrator } from '@domain/entity/illustrator';
+import { Illustrator } from '../../../domain/entity/illustrator';
 import { Illustrator as PrismaIllustrator } from '@prisma/client';
 
 export class PrismaIllustratorMapper {

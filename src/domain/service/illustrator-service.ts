@@ -1,13 +1,17 @@
-import { ReturnType } from '@domain/types/ReturnType';
-import MESSAGE from '@domain/utils/constants/messages';
-import { Illustrator } from '@domain/entity/illustrator';
-import { IllustratorClient } from '@domain/client/Illustrator-client';
+
 import { Injectable } from '@nestjs/common';
-import { EmailService } from "@domain/service/email-service";
+import { EmailService } from "../service/email-service";
+import { IllustratorClient } from "../client/illustrator-client";
+import { Illustrator } from "../entity/illustrator";
+import { ReturnType } from "../types/ReturnType";
+import MESSAGE from "../utils/constants/messages";
 
 @Injectable()
 export class IllustratorService {
-  constructor(private illustratorClient: IllustratorClient, private emailService: EmailService) {}
+  constructor(
+    private illustratorClient: IllustratorClient,
+    private emailService: EmailService,
+  ) {}
 
   async createIllustrator(data: Illustrator): Promise<ReturnType> {
     const illustratorAlreadyExists = await this.illustratorClient.findByEmail(
@@ -36,7 +40,7 @@ export class IllustratorService {
       };
     }
     return {
-      name: 'sucess',
+      name: 'success',
       message: MESSAGE.SUCCESS.ILLUSTRATOR_DELETED,
     };
   }

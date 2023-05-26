@@ -8,17 +8,16 @@ import {
   Param,
   HttpCode,
 } from '@nestjs/common';
-import { IllustratorService } from '@domain/service/illustrator-service';
-import { Illustrator } from '@domain/entity/illustrator';
+import { IllustratorService } from '../../../domain/service/illustrator-service';
+import { Illustrator } from '../../../domain/entity/illustrator';
 import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
   ApiTags,
-  ApiParam,
   ApiOkResponse,
 } from '@nestjs/swagger';
-import MESSAGE from '@domain/utils/constants/messages';
+import MESSAGE from '../../../domain/utils/constants/messages';
 
 @ApiTags('illustrators')
 @Controller('illustrator')

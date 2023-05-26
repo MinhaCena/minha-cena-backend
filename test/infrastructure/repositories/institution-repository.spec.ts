@@ -1,6 +1,6 @@
 import { InstitutionRepository } from '../../../src/infrastructure/database/repositories/institution-repository';
 import { PrismaService } from '../../../src/infrastructure/database/prisma-service';
-import { Institution } from '@domain/entity/institution';
+import { Institution } from '../../../src/domain/entity/institution';
 import { PrismaInstitutionMapper } from "../../../src/infrastructure/database/mappers/prisma-institution-mapper";
 
 

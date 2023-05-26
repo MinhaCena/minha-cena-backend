@@ -1,5 +1,6 @@
-import { User } from '@domain/entity/user';
+import { User } from "./user";
 import { ApiProperty } from '@nestjs/swagger';
+
 
 export class Institution {
   id: number;

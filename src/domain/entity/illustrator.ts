@@ -1,5 +1,7 @@
-import { User } from '@domain/entity/user';
+
+import { User } from "./user";
 import { ApiProperty } from '@nestjs/swagger';
+
 
 export class Illustrator {
   id: number;
