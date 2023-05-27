@@ -9,8 +9,7 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
-    "rootDir": "./src",
+    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -19,11 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@domain/*":["src/domain/*"],
-      "@entrypoint/*":["src/entrypoint/*"],
-      "@infrastructure/*":["src/infrastructure/*"],
-      "@providers/*": ["src/providers/*"],
-      "@test/*":["test/*"]
+      "@domain/*":["./src/domain/*"],
+      "@entrypoint/*":["./src/entrypoint/*"],
+      "@infrastructure/*":["./src/infrastructure/*"],
+      "@providers/*": ["./src/providers/*"],
+      "@test/*":["./test/*"]
     }
   }
 }
