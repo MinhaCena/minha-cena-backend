@@ -52,7 +52,7 @@ export class Institution {
   })
   registrantOccupation: string;
   @ApiProperty({
-    example: 'São 11966780598'
+    example: '11966780598'
   })
   registrantWhatsapp: string;
   @ApiProperty({
