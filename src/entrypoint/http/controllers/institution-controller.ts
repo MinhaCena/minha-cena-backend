@@ -5,9 +5,8 @@ import {
   HttpStatus,
   Post
 } from "@nestjs/common";
-import { InstitutionService } from "@domain/service/institution-service";
-import { Institution } from "@domain/entity/institution";
-import { EmailService } from "@domain/service/email-service";
+import { InstitutionService } from "../../../domain/service/institution-service";
+import { Institution } from "../../../domain/entity/institution";
 
 
 @Controller('institution')
