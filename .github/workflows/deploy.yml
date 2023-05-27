@@ -43,7 +43,7 @@ jobs:
             sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
             sudo systemctl start docker
             sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
-            sudo docker-compose up -d
+            sudo docker-compose up -d --force-recreate
             sudo docker exec -it minha_cena npx prisma migrate dev
           SSH_CMD_ARGS: -o StrictHostKeyChecking=no
         env:
