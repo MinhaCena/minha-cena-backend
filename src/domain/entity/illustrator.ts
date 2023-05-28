@@ -1,4 +1,5 @@
-import { User } from '@domain/entity/user';
+import { User } from "./user";
+
 
 /**
  *

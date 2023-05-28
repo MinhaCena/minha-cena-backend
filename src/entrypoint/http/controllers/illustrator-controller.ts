@@ -5,11 +5,12 @@ import {
   Delete,
   HttpStatus,
   Post,
-  Param, HttpCode
-} from "@nestjs/common";
-import { IllustratorService } from '@domain/service/illustrator-service';
-import { Illustrator } from '@domain/entity/illustrator';
+  Param,
+} from '@nestjs/common';
+import { IllustratorService } from '../../../domain/service/illustrator-service';
+import { Illustrator } from '../../../domain/entity/illustrator';
 import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiTags } from "@nestjs/swagger";
+
 
 @ApiTags('illustrators')
 @Controller('illustrator')

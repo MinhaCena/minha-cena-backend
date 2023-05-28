@@ -1,8 +1,9 @@
-import { Institution } from "@domain/entity/institution";
-import { InstitutionClient } from "../../../src/domain/client/institution-client";
-import { InstitutionService} from "../../../src/domain/service/institution-service";
+import { Institution } from '../../../src/domain/entity/institution';
+import { InstitutionClient } from '../../../src/domain/client/institution-client';
+import { InstitutionService } from '../../../src/domain/service/institution-service';
+import { EmailService } from '../../../src/domain/service/email-service';
 import { faker } from '@faker-js/faker';
-import { Test, TestingModule } from "@nestjs/testing";
+import { Test, TestingModule } from '@nestjs/testing';
 
 const data: Institution = {
   id: 1,
@@ -34,9 +35,19 @@ const institutionClientMock: InstitutionClientMock = {
   create: jest.fn(),
   updatedStatusInstitution: jest.fn(),
 };
-describe("InstitutionService", () => {
+
+interface EmailServiceMock {
+  sendEmail: jest.Mock;
+}
+
+const emailServiceMock: EmailServiceMock = {
+  sendEmail: jest.fn(),
+};
+
+describe('InstitutionService', () => {
   let institutionService: InstitutionService;
   let institutionClient: InstitutionClient;
+  let emailService: EmailService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -46,52 +57,59 @@ describe("InstitutionService", () => {
           provide: InstitutionClient,
           useValue: institutionClientMock,
         },
+        {
+          provide: EmailService,
+          useValue: emailServiceMock,
+        },
       ],
     }).compile();
 
     institutionService = module.get<InstitutionService>(InstitutionService);
     institutionClient = module.get<InstitutionClient>(InstitutionClient);
+    emailService = module.get<EmailService>(EmailService);
   });
 
-  describe("createInstitution", () => {
-    it("should return success message when institution does not exist", async () => {
+  describe('createInstitution', () => {
+    it('should return success message when institution does not exist', async () => {
       institutionClientMock.findByEmail.mockResolvedValue(null);
       institutionClientMock.create.mockResolvedValue(data);
 
       const result = await institutionService.createInstitution(data);
 
-      expect(result.name).toBe("success");
-      expect(result.message).toBe("Institution created successfully!");
+      expect(result.name).toBe('success');
+      expect(result.message).toBe('Institution created successfully!');
       expect(institutionClient.create).toHaveBeenCalledWith(data);
     });
 
-    it("should return error message when institution already exists", async () => {
+    it('should return error message when institution already exists', async () => {
       institutionClientMock.findByEmail.mockResolvedValue('thais');
       institutionClientMock.create.mockResolvedValue(data);
 
       const result = await institutionService.createInstitution(data);
 
-      expect(result.name).toEqual("error");
-      expect(result.message).toEqual("Institution already exists!");
+      expect(result.name).toEqual('error');
+      expect(result.message).toEqual('Institution already exists!');
     });
   });
 
-  describe("updatedStatusInstitution", () => {
-    it("should return success message when institution status is updated", async () => {
+  describe('updatedStatusInstitution', () => {
+    it('should return success message when institution status is updated', async () => {
       institutionClientMock.updatedStatusInstitution.mockResolvedValue(data);
 
       const result = await institutionService.updatedStatusInstitution(data);
 
-      expect(result.name).toBe("success");
-      expect(result.message).toBe("Status update successful");
+      expect(result.name).toBe('success');
+      expect(result.message).toBe('Status update successful');
     });
 
-    it("should return error message when institution status is not updated", async () => {
-      institutionClientMock.updatedStatusInstitution.mockResolvedValue(undefined);
+    it('should return error message when institution status is not updated', async () => {
+      institutionClientMock.updatedStatusInstitution.mockResolvedValue(
+        undefined,
+      );
       const result = await institutionService.updatedStatusInstitution(data);
 
-      expect(result.name).toEqual("error");
-      expect(result.message).toEqual("Unable to update institution status!");
+      expect(result.name).toEqual('error');
+      expect(result.message).toEqual('Unable to update institution status!');
     });
   });
 });

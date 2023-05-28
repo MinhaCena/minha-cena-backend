@@ -5,9 +5,8 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { User } from "@domain/entity/user";
-import { UserService } from "@domain/service/user-service";
-import { ApiTags } from '@nestjs/swagger';
+import { UserService } from "../../../domain/service/user-service";
+import { User } from "../../../domain/entity/user";
 
 @ApiTags('users')
 @Controller('user')

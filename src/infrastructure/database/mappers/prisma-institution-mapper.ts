@@ -1,4 +1,5 @@
-import { Institution } from '@domain/entity/institution';
+import { Institution } from "../../../domain/entity/institution";
+
 
 export class PrismaInstitutionMapper {
   static toPrisma(institution: Institution) {

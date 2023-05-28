@@ -1,4 +1,5 @@
-import { Illustrator } from '@domain/entity/illustrator';
+import { Illustrator } from "../entity/illustrator";
+
 
 export abstract class IllustratorClient {
   abstract create(data: Illustrator): Promise<void>;

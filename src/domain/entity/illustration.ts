@@ -1,5 +1,5 @@
-import { Essay } from '@domain/entity/essay';
-import { Illustrator } from '@domain/entity/illustrator';
+import { Essay } from "./essay";
+import { Illustrator } from "./illustrator";
 
 export class Illustration {
   id: number;
