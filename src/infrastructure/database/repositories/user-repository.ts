@@ -1,9 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { Injectable } from '@nestjs/common';
-import { UserClient } from "@domain/client/user-client";
-import { PrismaService } from '../../database/prisma-service';
-import { User } from '@domain/entity/user';
+import { User } from "../../../domain/entity/user";
+import { PrismaService } from "../prisma-service";
+import { UserClient } from "../../../domain/client/user-client";
+import { PrismaUserMapper } from "../mappers/prisma-user-mapper";
 
 @Injectable()
 export class UserRepository implements UserClient {
