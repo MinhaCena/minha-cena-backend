@@ -9,7 +9,6 @@ import { ConfigModule } from "@nestjs/config";
 import { IllustratorController } from './http/controllers/illustrator-controller';
 import { UserController } from "./http/controllers/user-controller";
 import { InstitutionController } from "./http/controllers/institution-controller";
-import { EmailController } from "./http/controllers/email-controller";
 import { UserRepository } from "../infrastructure/database/repositories/user-repository";
 import { InstitutionRepository } from "../infrastructure/database/repositories/institution-repository";
 import { IllustratorRepository } from "../infrastructure/database/repositories/illustrator-repository";

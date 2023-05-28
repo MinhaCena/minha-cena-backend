@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Post,
   Param,
+  HttpCode
 } from '@nestjs/common';
 import { IllustratorService } from '../../../domain/service/illustrator-service';
 import { Illustrator } from '../../../domain/entity/illustrator';

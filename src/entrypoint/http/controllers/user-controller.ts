@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from "../../../domain/service/user-service";
 import { User } from "../../../domain/entity/user";
+import { ApiTags } from "@nestjs/swagger";
 
 @ApiTags('users')
 @Controller('user')
