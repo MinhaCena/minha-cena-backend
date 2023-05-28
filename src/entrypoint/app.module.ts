@@ -22,6 +22,12 @@ import { IllustratorRepository } from "../infrastructure/database/repositories/i
     EventEmitterModule.forRoot(),
   ],
   controllers: [UserController, InstitutionController, IllustratorController],
-  providers: [...providers, ...serviceProviders, UserRepository, InstitutionRepository, IllustratorRepository],
+  providers: [
+    ...providers,
+    ...serviceProviders,
+    UserRepository,
+    InstitutionRepository,
+    IllustratorRepository,
+  ],
 })
 export class AppModule {}
