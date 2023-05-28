@@ -3,7 +3,6 @@ import { AppModule } from './entrypoint/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { BaseParameterObject } from "@nestjs/swagger/dist/interfaces/open-api-spec.interface";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -20,7 +19,7 @@ async function bootstrap() {
     .addTag('users')
     .addTag('institutions')
     .addTag('illustrators')
-    .addSecurityRequirements('https')
+    .addTag('health check')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

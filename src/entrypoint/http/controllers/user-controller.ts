@@ -33,7 +33,7 @@ export class UserController {
   @ApiBody({ type: User })
   @ApiOperation({
     summary: 'Route to create a user',
-    description: 'This endpoint should be used to create user logins.',
+    description: 'This route should be used to create user logins.',
     servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
   })
   async createUser(@Body() user: User) {
