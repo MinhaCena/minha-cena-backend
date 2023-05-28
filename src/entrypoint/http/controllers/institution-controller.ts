@@ -11,9 +11,9 @@ import { Institution } from '../../../domain/entity/institution';
 import {
   ApiBadRequestResponse,
   ApiBody,
-  ApiCreatedResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+  ApiCreatedResponse, ApiOperation,
+  ApiTags
+} from "@nestjs/swagger";
 import MESSAGE from '../../../domain/utils/constants/messages';
 
 @ApiTags('institutions')
@@ -31,6 +31,11 @@ export class InstitutionController {
     description: MESSAGE.ERROR.REGISTERED_INSTITUTION,
   })
   @ApiBody({ type: Institution })
+  @ApiOperation({
+    summary: 'Route for registering institutions',
+    description: 'Endpoint to be used for registration of schools and NGOs.',
+    servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
+  })
   async createInstitution(@Body() institution: Institution) {
     const data = await this.institutionService.createInstitution(institution);
     if (data.name === 'error') {
@@ -55,6 +60,11 @@ export class InstitutionController {
   @ApiBadRequestResponse({
     status: 400,
     description: MESSAGE.ERROR.NOT_UPDATE_STATUS_INSTITUTION,
+  })
+  @ApiOperation({
+    summary: 'Route to update status of an institution registration',
+    description: 'This endpoint must be used when the registration is approved or rejected.',
+    servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
   })
   @ApiBody({ type: Institution })
   async updateStatusInstitution(@Body() institution: Institution) {
