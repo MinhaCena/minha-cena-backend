@@ -1,7 +1,7 @@
 import { Institution } from "./institution";
 import { Author } from "./author";
 
-export interface Essay {
+export class Essay {
   id: number;
   institution: Institution;
   author: Author;
