@@ -15,7 +15,7 @@ async function bootstrap() {
     .setDescription(
       'API responsável pelo cadastro e interação na plataforma entre usuários, instituições e ilustradores',
     )
-    .setVersion('0.2.1')
+    .setVersion('0.3.0')
     .addTag('users')
     .addTag('institutions')
     .addTag('illustrators')
