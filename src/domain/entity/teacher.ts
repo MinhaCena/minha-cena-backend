@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 
-export interface Teacher {
+export class Teacher {
     id: number;
     user: User;
     name?: string;

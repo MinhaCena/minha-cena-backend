@@ -1,6 +1,6 @@
 import { Essay } from "./essay";
 
-export interface Theme {
+export class Theme {
   id: number;
   theme: string;
   createdAt: Date;
