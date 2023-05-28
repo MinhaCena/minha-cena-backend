@@ -35,7 +35,7 @@ export class IllustratorController {
   })
   @ApiOperation({
     summary: 'Route for registering illustrators',
-    description: 'This endpoint should be used to register illustrators.',
+    description: 'This route should be used to register illustrators.',
     servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
   })
   @ApiBody({ type: Illustrator })
@@ -64,7 +64,7 @@ export class IllustratorController {
   })
   @ApiOperation({
     summary: 'Route to remove registration of illustrators',
-    description: 'This endpoint must be used to remove an illustrator registration.',
+    description: 'This route must be used to remove an illustrator registration.',
     servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
   })
   async remove(@Param('id') id: number) {

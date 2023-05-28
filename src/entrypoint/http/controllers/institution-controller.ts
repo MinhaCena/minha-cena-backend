@@ -33,7 +33,7 @@ export class InstitutionController {
   @ApiBody({ type: Institution })
   @ApiOperation({
     summary: 'Route for registering institutions',
-    description: 'Endpoint to be used for registration of schools and NGOs.',
+    description: 'Route to be used for registration of schools and NGOs.',
     servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
   })
   async createInstitution(@Body() institution: Institution) {
@@ -63,7 +63,7 @@ export class InstitutionController {
   })
   @ApiOperation({
     summary: 'Route to update status of an institution registration',
-    description: 'This endpoint must be used when the registration is approved or rejected.',
+    description: 'This route must be used when the registration is approved or rejected.',
     servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
   })
   @ApiBody({ type: Institution })

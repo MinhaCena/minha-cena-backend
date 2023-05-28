@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "api-minha-cena",
   "version": "0.2.1",
-  "description": "",
+  "description": "API responsável pelo cadastro e interação na plataforma entre usuários, instituições e ilustradores",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -36,6 +36,7 @@
     "dotenv": "^16.0.3",
     "EventEmitter": "^1.0.0",
     "faker-br": "^0.4.1",
+    "fs": "^0.0.1-security",
     "handlebars": "^4.7.7",
     "hbs": "^4.2.0",
     "nodemailer": "^6.9.1",

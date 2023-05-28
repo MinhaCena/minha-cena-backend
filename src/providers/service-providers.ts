@@ -10,6 +10,7 @@ import { EmailService } from "../domain/service/email-service";
 import { EmailNotificationService } from "../domain/service/email-notification-service";
 import { EmailSentEvent } from "../domain/event/email-sent-event";
 import { EmailSendErrorEvent } from "../domain/event/email-send-error-event";
+import { HealthCheckService } from "@domain/service/health-check-service";
 
 
 export const serviceProviders: Provider[] = [
@@ -23,5 +24,6 @@ export const serviceProviders: Provider[] = [
   EmailService,
   EmailNotificationService,
   EmailSentEvent,
-  EmailSendErrorEvent
+  EmailSendErrorEvent,
+  HealthCheckService
 ];
