@@ -27,12 +27,20 @@ services:
       - database
 
   app:
-    build: .
+    image: minhacena/minha-cena-backend_app
     container_name: minha_cena
     ports:
-      - 3080:3080
+      - 80:3080
     environment:
       - DATABASE_URL=postgresql://root:password@database:5432/minha_cena
+      - HOST_EMAIL=mail.minhacena.org
+      - USER_EMAIL=atendimento@minhacena.org
+      - PASS_EMAIL=Nossacena@2023
+      - EMAIL_USERNAME=MinhaCena
+      - FROM_EMAIL=atendimento@minhacena.org
+      - SUBJECT_EMAIL_REGISTER=Recebemos seu cadastro - MinhaCena
+      - PORT=3080
+      - JWT_SECRET="u6UJT0VX"
     links:
       - database
     depends_on:

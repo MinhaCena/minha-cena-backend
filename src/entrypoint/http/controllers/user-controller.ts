@@ -4,15 +4,38 @@ import {
   Controller,
   HttpStatus,
   Post,
+  HttpCode,
 } from '@nestjs/common';
-import { UserService } from "../../../domain/service/user-service";
-import { User } from "../../../domain/entity/user";
+import { User } from '../../../domain/entity/user';
+import { UserService } from '../../../domain/service/user-service';
+import {
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse, ApiOperation
+} from "@nestjs/swagger";
+import MESSAGE from '../../../domain/utils/constants/messages';
 
-
+@ApiTags('users')
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
   @Post()
+  @HttpCode(201)
+  @ApiCreatedResponse({
+    status: 201,
+    description: MESSAGE.SUCCESS.USER_CREATED,
+  })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: MESSAGE.ERROR.REGISTERED_USER,
+  })
+  @ApiBody({ type: User })
+  @ApiOperation({
+    summary: 'Route to create a user',
+    description: 'This route should be used to create user logins.',
+    servers: [{ url: 'http://23.23.100.245' }, { url: 'https://23.23.100.245' }],
+  })
   async createUser(@Body() user: User) {
     const data = await this.userService.createUser(user);
     if (data.name === 'error') {
