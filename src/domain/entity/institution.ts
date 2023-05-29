@@ -1,5 +1,5 @@
 import { User } from "./user";
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 
 export class Institution {
@@ -25,14 +25,12 @@ export class Institution {
     example: 'São Paulo'
   })
   state: string;
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 1,
-    required: false
   })
   schoolType?: number;
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'colegionossasenhoradasdores@email.com',
-    required: false
   })
   institutionEmail?: string;
   @ApiProperty({
