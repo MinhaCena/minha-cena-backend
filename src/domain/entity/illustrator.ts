@@ -1,13 +1,31 @@
-import { User } from '@domain/entity/user';
 
-export interface Illustrator {
+import { User } from "./user";
+import { ApiProperty } from '@nestjs/swagger';
+
+
+export class Illustrator {
   id: number;
-  userId?: User;
+  user?: User;
+  @ApiProperty({
+    example: 'Marina Silva'
+  })
   name: string;
+  @ApiProperty({
+    example: 'marinasilva@email.com'
+  })
   email: string;
-  cpf: string;
-  whatapp: string;
-  portifolio: string;
+  @ApiProperty({
+    example: '33856847860'
+  })
+  cpfCnpj: string;
+  @ApiProperty({
+    example: '11988759244'
+  })
+  whatsapp: string;
+  @ApiProperty({
+    example: 'www.marinasilva.com'
+  })
+  portfolio: string;
   createdAt: Date;
   updatedAt?: Date;
 }

@@ -21,7 +21,8 @@
       "@domain/*":["./src/domain/*"],
       "@entrypoint/*":["./src/entrypoint/*"],
       "@infrastructure/*":["./src/infrastructure/*"],
-      "@test/*":["./ioc-providers/*"]
+      "@providers/*": ["./src/providers/*"],
+      "@test/*":["./test/*"]
     }
   }
 }

@@ -4,7 +4,7 @@ services:
 
   database:
     image: postgres
-    container_name: database
+    container_name: database_minha_cena
     restart: always
     ports:
       - '5439:5432'
@@ -13,21 +13,38 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=minha_cena
     volumes:
-      - pgdata:/data/postgres
+      - pgdata:/var/lib/postgresql/data
 
-#  app:
-#    build: .
-#    container_name: backend_minha_cena
-#    ports:
-#      - 3080:3080
-#    volumes:
-#      - .:/usr/apps
-#    links:
-#      - database
-#    depends_on:
-#      - database
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - '8080:80'
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=password
+      - PGADMIN_DEFAULT_EMAIL=root@minhacena.com
+    depends_on:
+      - database
 
+  app:
+    image: minhacena/minha-cena-backend_app
+    container_name: minha_cena
+    ports:
+      - 80:3080
+    environment:
+      - DATABASE_URL=postgresql://root:password@database:5432/minha_cena
+      - HOST_EMAIL=mail.minhacena.org
+      - USER_EMAIL=atendimento@minhacena.org
+      - PASS_EMAIL=Nossacena@2023
+      - EMAIL_USERNAME=MinhaCena
+      - FROM_EMAIL=atendimento@minhacena.org
+      - SUBJECT_EMAIL_REGISTER=Recebemos seu cadastro - MinhaCena
+      - PORT=3080
+      - JWT_SECRET="u6UJT0VX"
+    links:
+      - database
+    depends_on:
+      - database
 
 volumes:
   pgdata:
-    driver: local

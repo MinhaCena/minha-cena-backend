@@ -1,8 +1,9 @@
-import { School } from '@domain/entity/school';
+import { Institution } from './institution';
+import { Essay } from './essay';
 
-export interface Author {
+export class Author {
   id: number;
-  schoolId: School;
+  institution: Institution;
   name: string;
   class: string;
   age: number;
