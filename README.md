@@ -8,7 +8,7 @@ O [MinhaCena.Org](https://minhacena.org) é uma ferramenta de impacto social e e
 > **Linguagem**
 
 ```bash
-* markdown
+typescript
 ```
 
 > **Tecnologias utilizadas**
@@ -21,19 +21,29 @@ O [MinhaCena.Org](https://minhacena.org) é uma ferramenta de impacto social e e
 * docker
 ```
 
-> **Funcionalidades da aplicação**
+> **Guia para rodar o projeto**
 
 ```bash
-* Cadastro da Instituição
-* Cadastro de Usuário
-* Cadastro de Ilustradores
+*Instalar o Docker Desktop
+
+1. Faça o download do Docker Desktop.
+
+2. Se ainda não baixou o instalador ( Docker Desktop Installer.exe), você pode obtê-lo no Docker Hub . Normalmente Downloads, ele é baixado para sua pasta ou você pode executá-lo na barra de downloads recentes na parte inferior do navegador da web.
+
+3. Quando solicitado, certifique-se de que a opção Usar WSL 2 em vez de Hyper-V na página de configuração esteja selecionada ou não, dependendo de sua escolha de back-end.
+
+4. Se o seu sistema suportar apenas uma das duas opções, você não poderá selecionar qual back-end usar.
+
+5. Siga as instruções do assistente de instalação para autorizar o instalador e prosseguir com a instalação.
+
+6. Quando a instalação for bem-sucedida, clique em Fechar para concluir o processo de instalação.
+
+7. Se sua conta de administrador for diferente de sua conta de usuário, você deverá adicionar o usuário ao grupo docker-users . Execute o Gerenciamento do computador como administrador e navegue até Usuários e grupos locais > Grupos > docker-users . Clique com o botão direito do mouse para adicionar o usuário ao grupo. Saia e entre novamente para que as alterações entrem em vigor.
+
+8. Após a instalação do docker é preciso instalar o linux no windows, através do WSL.
+
+9. Para isso, utilizar o seguinte comando : wsl --install e instalará o Ubuntu na máquina para rodar o projeto.
 ```
-
-
-
-> **Suporte**
-
-* atendimento@minhacena.org
 
 > **Pessoas desenvolvedoras**
 
