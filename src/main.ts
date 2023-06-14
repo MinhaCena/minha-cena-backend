@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useStaticAssets(join(__dirname, '..', 'public'))
   app.enableCors();
   app.setBaseViewsDir(join(__dirname, '.', 'templates'));
   app.setViewEngine('hbs');

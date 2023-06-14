@@ -4,6 +4,7 @@ import {
   Controller,
   HttpStatus,
   Post,
+  Put,
   HttpCode,
 } from '@nestjs/common';
 import { InstitutionService } from '../../../domain/service/institution-service';
@@ -51,7 +52,7 @@ export class InstitutionController {
     };
   }
 
-  @Post('update-status/:id')
+  @Put('update-status/:id')
   @HttpCode(200)
   @ApiCreatedResponse({
     status: 200,

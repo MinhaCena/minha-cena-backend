@@ -7,6 +7,7 @@ RUN apt-get update && \
 
 COPY src/ src/
 COPY prisma/ prisma/
+COPY templates/ templates/
 COPY *.json .
 
 RUN npm install
