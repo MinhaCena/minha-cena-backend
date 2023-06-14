@@ -1,4 +1,4 @@
-export type ReturnType = {
+export type returnType = {
   name: string;
   message: string;
 };
