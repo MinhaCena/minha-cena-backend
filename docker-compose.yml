@@ -10,7 +10,7 @@ services:
       - '5439:5432'
     environment:
       - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=
       - POSTGRES_DB=minha_cena
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -21,7 +21,7 @@ services:
     ports:
       - '8080:80'
     environment:
-      - PGADMIN_DEFAULT_PASSWORD=password
+      - PGADMIN_DEFAULT_PASSWORD=
       - PGADMIN_DEFAULT_EMAIL=root@minhacena.com
     depends_on:
       - database
@@ -35,12 +35,12 @@ services:
       - DATABASE_URL=postgresql://root:password@database:5432/minha_cena
       - HOST_EMAIL=mail.minhacena.org
       - USER_EMAIL=atendimento@minhacena.org
-      - PASS_EMAIL=Nossacena@2023
+      - PASS_EMAIL=
       - EMAIL_USERNAME=MinhaCena
       - FROM_EMAIL=atendimento@minhacena.org
       - SUBJECT_EMAIL_REGISTER=Recebemos seu cadastro - MinhaCena
       - PORT=3080
-      - JWT_SECRET="u6UJT0VX"
+      - JWT_SECRET=
     links:
       - database
     depends_on:
