@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { EmailService } from "../service/email-service";
 import { IllustratorClient } from "../client/illustrator-client";
 import { Illustrator } from "../entity/illustrator";
-import { ReturnType } from "../types/ReturnType";
+import { returnType } from "../types/return-type";
 import MESSAGE from "../utils/constants/messages";
 
 @Injectable()
@@ -12,8 +12,7 @@ export class IllustratorService {
     private illustratorClient: IllustratorClient,
     private emailService: EmailService,
   ) {}
-
-  async createIllustrator(data: Illustrator): Promise<ReturnType> {
+  async createIllustrator(data: Illustrator): Promise<returnType> {
     const illustratorAlreadyExists = await this.illustratorClient.findByEmail(
       data,
     );
@@ -30,8 +29,7 @@ export class IllustratorService {
       message: MESSAGE.ERROR.REGISTERED_ILLUSTRATOR,
     };
   }
-
-  async deleteIllustrator(id: number): Promise<ReturnType> {
+  async deleteIllustrator(id: number): Promise<returnType> {
     const deleteIllustrator = await this.illustratorClient.delete(id);
     if (deleteIllustrator === null) {
       return {

@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserClient } from '../client/user-client';
 import { User } from '../entity/user';
-import { ReturnType } from '../types/ReturnType';
+import { returnType } from '../types/return-type';
 import { EmailValidation } from '../validations/email-validation';
 import { LoginValidation } from '../validations/login-validation';
 import MESSAGE from '../utils/constants/messages';
@@ -14,7 +14,7 @@ export class UserService {
     private userValidation: EmailValidation,
     private passwordValidation: LoginValidation,
   ) {}
-  async createUser(data: User): Promise<ReturnType> {
+  async createUser(data: User): Promise<returnType> {
     await this.userValidation.emailValidate(data);
     await this.passwordValidation.passwordValidate(data);
     // data.password = await bcrypt.hash(data.password, 10);
